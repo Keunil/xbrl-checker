@@ -28,48 +28,35 @@ st.markdown("""
 <style>
     /* 헤더 여백 줄이기 */
     .block-container { padding-top: 2rem; }
-    
-    /* 결과 카드 스타일 */
+
+    /* 결과 카드 */
     .result-card {
-        border: 1px solid #e0e0e0;
-        border-radius: 8px;
-        padding: 1rem;
+        background: #f8f9fa;
+        border-left: 4px solid #1f77b4;
+        border-radius: 6px;
+        padding: 1rem 1.2rem;
         margin: 0.5rem 0;
-        background-color: #f9f9f9;
-    }
-    .result-card.ok {
-        border-color: #4CAF50;
-        background-color: #f1f8e9;
     }
     .result-card.warn {
-        border-color: #FF9800;
-        background-color: #fff3e0;
+        border-left-color: #ff7f0e;
     }
-    
-    /* 배지 스타일 */
+    .result-card.ok {
+        border-left-color: #2ca02c;
+    }
+
+    /* 오류 배지 */
     .badge {
         display: inline-block;
-        padding: 0.25rem 0.5rem;
-        border-radius: 4px;
-        font-size: 0.8rem;
-        font-weight: bold;
-        margin: 0.25rem;
+        padding: 2px 8px;
+        border-radius: 12px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        margin-right: 4px;
     }
-    .badge-red {
-        background-color: #ffebee;
-        color: #c62828;
-        border: 1px solid #ffcdd2;
-    }
-    .badge-orange {
-        background-color: #fff3e0;
-        color: #ef6c00;
-        border: 1px solid #ffcc02;
-    }
-    .badge-yellow {
-        background-color: #fffde7;
-        color: #f57f17;
-        border: 1px solid #ffeb3b;
-    }
+    .badge-red    { background:#ffe0e0; color:#c00; }
+    .badge-orange { background:#fff3e0; color:#c65f00; }
+    .badge-yellow { background:#fffde7; color:#a07000; }
+    .badge-gray   { background:#f0f0f0; color:#555; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -77,16 +64,15 @@ st.markdown("""
 # 타이틀
 # ──────────────────────────────────────────────────────────────
 st.title("🔍 XBRL 영문명 오탈자 검토")
-st.markdown("금감원 DART XBRL 재무제표 작성 가이드 기반 자동 검토 도구")
+st.caption("금감원 DART XBRL 재무제표 작성 가이드(2026.01) 기반 | 규칙 기반 자동 검사")
+
+st.divider()
 
 # ──────────────────────────────────────────────────────────────
-# 탭 생성
+# 탭 설정
 # ──────────────────────────────────────────────────────────────
 tab1, tab2 = st.tabs(["📋 일반 검사", "📊 마스터 파일 검사"])
 
-# ──────────────────────────────────────────────────────────────
-# 탭 1: 일반 XBRL 파일 검사
-# ──────────────────────────────────────────────────────────────
 with tab1:
     st.markdown("### 📤 일반 XBRL 파일 검사")
     st.markdown("스마트XBRL에서 내보낸 .xlsm 또는 .xlsx 파일을 업로드하여 검사합니다.")
@@ -145,20 +131,11 @@ with tab1:
         except Exception as e:
             return False, f"파일 읽기 중 오류가 발생했습니다: {str(e)}", None, None
 
-    # ──────────────────────────────────────────────────────────────
-    # 입력 폼
-    # ──────────────────────────────────────────────────────────────
-    st.markdown("### 📤 파일 및 옵션 설정")
-
-    uploaded = st.file_uploader(
-        "XBRL 파일 업로드",
-        type=["xlsm", "xlsx"],
-        help="스마트XBRL에서 내보낸 .xlsm 또는 .xlsx 파일을 업로드하세요.",
-    )
 
     # 파일 검증 및 메타데이터 추출
     company_extracted = None
     finance_type_extracted = None
+    file_validation_error = None
 
     if uploaded:
         file_bytes_check = uploaded.read()
@@ -175,6 +152,7 @@ with tab1:
             finance_type_extracted = finance_type
             st.success(f"✅ 파일 검증 완료 | 회사명: **{company_name}** | 구분: **{finance_type}**")
 
+    # 일반 검사 폼
     with st.form("check_form"):
         col_left, col_right = st.columns([2, 1])
 
@@ -224,8 +202,143 @@ with tab1:
             type="primary",
         )
 
+with tab2:
+    st.markdown("### 📊 마스터 파일 검사")
+    st.markdown("XBRL 마스터 파일(.xlsx)을 업로드하여 모든 항목을 일괄 검사합니다.")
+    
+    # 마스터 파일 검사 폼
+    with st.form("master_form"):
+        master_uploaded = st.file_uploader(
+            "마스터 파일 업로드",
+            type=["xlsx"],
+            help="XBRL 마스터 파일(.xlsx)을 업로드하세요.",
+        )
+        
+        master_submitted = st.form_submit_button(
+            "🔎 마스터 검사 시작",
+            use_container_width=True,
+            type="primary",
+        )
+
+# ──────────────────────────────────────────────────────────────
+# 마스터 파일 검사 처리
+# ──────────────────────────────────────────────────────────────
+if master_submitted:
+    # ── 입력 검증 ──────────────────────────────────────────────
+    if not master_uploaded:
+        st.error("마스터 파일을 업로드해 주세요.")
+        st.stop()
+
+    # ── 처리 ──────────────────────────────────────────────────
+    with st.spinner("마스터 파일 검사 중입니다… 잠시 기다려 주세요."):
+        t0 = time.time()
+        try:
+            file_bytes = master_uploaded.read()
+            excel_bytes, stats = run_master_check_bytes(
+                file_bytes = file_bytes,
+                filename   = master_uploaded.name,
+            )
+            elapsed = time.time() - t0
+        except Exception as exc:
+            st.error(f"마스터 파일 검사 중 오류가 발생했습니다:\n\n```\n{exc}\n```")
+            st.stop()
+
+    # ── 결과 표시 ──────────────────────────────────────────────
+    st.success(f"✅ 마스터 파일 검사 완료 ({elapsed:.1f}초)")
+    st.divider()
+
+    total = stats["total_rows"]
+    n_issues = stats["issue_count"]
+    n_missing = stats["n_missing"]
+    n_viol = stats["n_violation"]
+    n_typo = stats["n_typo"]
+
+    # 요약 카드
+    card_cls = "ok" if n_issues == 0 else ("warn" if n_issues < 100 else "result-card")
+    st.markdown(f"""
+<div class="result-card {card_cls}">
+    <b>📊 마스터 파일 검사 결과 요약</b><br><br>
+    전체 행: <b>{total:,}행</b> &nbsp;|&nbsp; 이슈 항목: <b>{n_issues}건</b><br><br>
+    <span class="badge badge-red">영문명 미기재 {n_missing}건</span>
+    <span class="badge badge-orange">확장 원칙 위배 {n_viol}건</span>
+    <span class="badge badge-yellow">오탈자 {n_typo}건</span>
+</div>
+""", unsafe_allow_html=True)
+
+    # 다운로드 버튼
+    st.markdown("&nbsp;")
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M")
+    output_name = f"마스터파일_오탈자검사_{timestamp}.xlsx"
+
+    st.download_button(
+        label="⬇️ 마스터 검사 결과 다운로드 (.xlsx)",
+        data=excel_bytes,
+        file_name=output_name,
+        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        use_container_width=True,
+        type="primary",
+    )
+
 # ──────────────────────────────────────────────────────────────
 # 일반 파일 검사 처리
+# ──────────────────────────────────────────────────────────────
+# 입력 폼
+# ──────────────────────────────────────────────────────────────
+st.markdown("### 📤 파일 및 옵션 설정")
+
+uploaded = st.file_uploader(
+    "XBRL 파일 업로드",
+    type=["xlsm", "xlsx"],
+    help="스마트XBRL에서 내보낸 .xlsm 또는 .xlsx 파일을 업로드하세요.",
+)
+
+# 파일 검증 및 메타데이터 추출
+company_extracted = None
+finance_type_extracted = None
+file_validation_error = None
+
+if uploaded:
+    file_bytes_check = uploaded.read()
+    uploaded.seek(0)  # 파일 포인터 초기화
+    
+    is_valid, error_msg, company_name, finance_type = validate_and_extract_metadata(file_bytes_check)
+    
+    if not is_valid:
+        st.error(f"❌ {error_msg}")
+        uploaded = None
+        st.stop()
+    else:
+        company_extracted = company_name
+        finance_type_extracted = finance_type
+        st.success(f"✅ 파일 검증 완료 | 회사명: **{company_name}** | 구분: **{finance_type}**")
+
+with st.form("check_form"):
+    col_left, col_right = st.columns([2, 1])
+
+    with col_left:
+        company = st.text_input(
+            "회사명",
+            value=company_extracted or "",
+            placeholder="예: 주한화, LG화학, 사조씨푸드",
+            help="파일에서 자동 추출되었습니다.",
+        )
+
+    with col_right:
+        btype = st.radio(
+            "재무제표 구분",
+            options=["별도", "연결"],
+            index=0 if finance_type_extracted == "별도" or finance_type_extracted is None else 1,
+            help="파일에서 자동 추출되었습니다.",
+        )
+
+    submitted = st.form_submit_button(
+        "🔎 검사 시작",
+        use_container_width=True,
+        type="primary",
+    )
+
+# ──────────────────────────────────────────────────────────────
+# 처리
 # ──────────────────────────────────────────────────────────────
 if submitted:
     # ── 입력 검증 ──────────────────────────────────────────────
@@ -355,83 +468,6 @@ if submitted:
             """
         
         st.markdown(base_info)
-
-with tab2:
-    st.markdown("### 📊 마스터 파일 검사")
-    st.markdown("XBRL 마스터 파일(.xlsx)을 업로드하여 모든 항목을 일괄 검사합니다.")
-    
-    # 마스터 파일 검사 폼
-    with st.form("master_form"):
-        master_uploaded = st.file_uploader(
-            "마스터 파일 업로드",
-            type=["xlsx"],
-            help="XBRL 마스터 파일(.xlsx)을 업로드하세요.",
-        )
-        
-        master_submitted = st.form_submit_button(
-            "🔎 마스터 검사 시작",
-            use_container_width=True,
-            type="primary",
-        )
-
-# ──────────────────────────────────────────────────────────────
-# 마스터 파일 검사 처리
-# ──────────────────────────────────────────────────────────────
-if master_submitted:
-    # ── 입력 검증 ──────────────────────────────────────────────
-    if not master_uploaded:
-        st.error("마스터 파일을 업로드해 주세요.")
-        st.stop()
-
-    # ── 처리 ──────────────────────────────────────────────────
-    with st.spinner("마스터 파일 검사 중입니다… 잠시 기다려 주세요."):
-        t0 = time.time()
-        try:
-            file_bytes = master_uploaded.read()
-            excel_bytes, stats = run_master_check_bytes(
-                file_bytes = file_bytes,
-                filename   = master_uploaded.name,
-            )
-            elapsed = time.time() - t0
-        except Exception as exc:
-            st.error(f"마스터 파일 검사 중 오류가 발생했습니다:\n\n```\n{exc}\n```")
-            st.stop()
-
-    # ── 결과 표시 ──────────────────────────────────────────────
-    st.success(f"✅ 마스터 파일 검사 완료 ({elapsed:.1f}초)")
-    st.divider()
-
-    total = stats["total_rows"]
-    n_issues = stats["issue_count"]
-    n_missing = stats["n_missing"]
-    n_viol = stats["n_violation"]
-    n_typo = stats["n_typo"]
-
-    # 요약 카드
-    card_cls = "ok" if n_issues == 0 else ("warn" if n_issues < 100 else "result-card")
-    st.markdown(f"""
-<div class="result-card {card_cls}>
-    <b>📊 마스터 파일 검사 결과 요약</b><br><br>
-    전체 행: <b>{total:,}행</b> &nbsp;|&nbsp; 이슈 항목: <b>{n_issues}건</b><br><br>
-    <span class="badge badge-red">영문명 미기재 {n_missing}건</span>
-    <span class="badge badge-orange">확장 원칙 위배 {n_viol}건</span>
-    <span class="badge badge-yellow">오탈자 {n_typo}건</span>
-</div>
-""", unsafe_allow_html=True)
-
-    # 다운로드 버튼
-    st.markdown("&nbsp;")
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M")
-    output_name = f"마스터파일_오탈자검사_{timestamp}.xlsx"
-
-    st.download_button(
-        label="⬇️ 마스터 검사 결과 다운로드 (.xlsx)",
-        data=excel_bytes,
-        file_name=output_name,
-        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-        use_container_width=True,
-        type="primary",
-    )
 
 # ──────────────────────────────────────────────────────────────
 # 푸터

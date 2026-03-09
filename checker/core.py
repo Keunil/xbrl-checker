@@ -134,7 +134,7 @@ TYPO_RULES: list[tuple[str, str, str]] = [
     (r"\bprepiad\b",                     "prepiad",        "prepaid"),
     (r"\btransation\b",                  "transation",     "transaction"),
     (r"\btransctions\b",                 "transctions",    "transactions"),
-    (r"\bsubsidary\b",                   "subsid ary",     "subsidiary"),
+    (r"\bsubsidary\b",                   "subsidary",      "subsidiary"),
     (r"\bsubsidiary s\b",               "subsidiary s",   "subsidiaries"),
     (r"\baffilait",                      "affilait",       "affiliat"),
     (r"\baffilat(?!e)",                  "affiliat",       "affiliate"),
@@ -144,6 +144,1395 @@ TYPO_RULES: list[tuple[str, str, str]] = [
     (r"\bborrowing s\b",                "borrowing s",    "borrowings"),
     (r"\bnon-current\s+non-current\b",  "이중 non-current","non-current (중복)"),
     (r"\bcurrent\s+current\b",          "current current","current (중복)"),
+    # --- 추가 실무 패턴 ---
+    (r"\bacquistion\b",                  "acquistion",     "acquisition"),
+    (r"\bacquisitions\b",                "acquistions",    "acquisitions"),
+    (r"\bacount\b",                      "acount",         "account"),
+    (r"\bacounts\b",                     "acounts",        "accounts"),
+    (r"\badditonal\b",                   "additonal",      "additional"),
+    (r"\badjustement\b",                 "adjustement",    "adjustment"),
+    (r"\badjustements\b",                "adjustements",   "adjustments"),
+    (r"\badvertisment\b",                "advertisment",   "advertisement"),
+    (r"\bagreemen\b",                    "agreemen",       "agreement"),
+    (r"\bagreements\b",                  "agreemen",       "agreements"),
+    (r"\ballocat\b",                     "allocat",        "allocation"),
+    (r"\ballowence\b",                   "allowence",      "allowance"),
+    (r"\bamendmen\b",                    "amendmen",       "amendment"),
+    (r"\bannouncem\b",                   "announcem",      "announcement"),
+    (r"\bapplicabl\b",                   "applicabl",      "applicable"),
+    (r"\bappropriat\b",                  "appropriat",     "appropriate"),
+    (r"\barbitrag\b",                    "arbitrag",       "arbitrage"),
+    (r"\barbitrat\b",                    "arbitrat",       "arbitration"),
+    (r"\barrears\b",                     "arrears",        "arrears"),
+    (r"\bassociat\b",                    "associat",       "associate"),
+    (r"\bassociats\b",                   "associats",      "associates"),
+    (r"\bauthoriz\b",                    "authoriz",       "authorize"),
+    (r"\bauthorizd\b",                   "authorizd",      "authorized"),
+    (r"\bavailabl\b",                    "availabl",       "available"),
+    (r"\bbalanc\b",                      "balanc",         "balance"),
+    (r"\bbalanced\b",                    "balanced",       "balanced"),
+    (r"\bbalances\b",                     "balances",       "balances"),
+    (r"\bbenefi\b",                      "benefi",         "benefit"),
+    (r"\bbenefits\b",                    "benefits",       "benefits"),
+    (r"\bbusiness\b",                    "bussiness",      "business"),
+    (r"\bbusinesses\b",                  "bussinesses",    "businesses"),
+    (r"\bcalculat\b",                    "calculat",       "calculate"),
+    (r"\bcalculatd\b",                   "calculatd",      "calculated"),
+    (r"\bcalculats\b",                   "calculats",      "calculates"),
+    (r"\bcancell\b",                     "cancell",        "cancel"),
+    (r"\bcancelld\b",                    "cancelld",       "cancelled"),
+    (r"\bcancels\b",                     "cancels",        "cancels"),
+    (r"\bcapita\b",                      "capita",         "capital"),
+    (r"\bcapitals\b",                    "capitals",       "capitals"),
+    (r"\bcategor\b",                     "categor",        "category"),
+    (r"\bcategories\b",                  "categories",     "categories"),
+    (r"\bchang\b",                       "chang",          "change"),
+    (r"\bchanges\b",                     "changes",        "changes"),
+    (r"\bcharg\b",                       "charg",          "charge"),
+    (r"\bcharges\b",                     "charges",        "charges"),
+    (r"\bcircumstanc\b",                 "circumstanc",    "circumstance"),
+    (r"\bcircumstances\b",               "circumstances",  "circumstances"),
+    (r"\bclassif\b",                     "classif",        "classify"),
+    (r"\bclassifd\b",                    "classifd",       "classified"),
+    (r"\bclassifs\b",                    "classifs",       "classifies"),
+    (r"\bcollect\b",                     "collect",        "collect"),
+    (r"\bcollectd\b",                    "collectd",       "collected"),
+    (r"\bcollects\b",                    "collects",       "collects"),
+    (r"\bcombin\b",                      "combin",         "combine"),
+    (r"\bcombinat\b",                    "combinat",       "combination"),
+    (r"\bcombinats\b",                   "combinats",      "combinations"),
+    (r"\bcommenc\b",                     "commenc",        "commence"),
+    (r"\bcommencd\b",                    "commencd",       "commenced"),
+    (r"\bcommences\b",                   "commences",      "commences"),
+    (r"\bcommit\b",                      "commit",         "commit"),
+    (r"\bcommitd\b",                     "commitd",        "committed"),
+    (r"\bcommits\b",                     "commits",        "commits"),
+    (r"\bcommunicat\b",                  "communicat",     "communicate"),
+    (r"\bcommunicatd\b",                 "communicatd",    "communicated"),
+    (r"\bcommunicats\b",                 "communicats",    "communicates"),
+    (r"\bcompar\b",                      "compar",         "compare"),
+    (r"\bcomparat\b",                    "comparat",       "comparative"),
+    (r"\bcomparats\b",                   "comparats",      "comparatives"),
+    (r"\bcompensat\b",                   "compensat",      "compensate"),
+    (r"\bcompensatd\b",                  "compensatd",     "compensated"),
+    (r"\bcompensats\b",                  "compensats",     "compensates"),
+    (r"\bcompet\b",                      "compet",         "compete"),
+    (r"\bcompetd\b",                     "competd",        "competed"),
+    (r"\bcompets\b",                     "compets",        "competes"),
+    (r"\bcomplet\b",                     "complet",        "complete"),
+    (r"\bcompletd\b",                    "completd",       "completed"),
+    (r"\bcompletes\b",                   "completes",      "completes"),
+    (r"\bcompon\b",                      "compon",         "component"),
+    (r"\bcompons\b",                     "compons",        "components"),
+    (r"\bcomprehens\b",                  "comprehens",     "comprehensive"),
+    (r"\bcomprehensives\b",              "comprehensives", "comprehensives"),
+    (r"\bcomput\b",                      "comput",         "compute"),
+    (r"\bcomputd\b",                     "computd",        "computed"),
+    (r"\bcomputs\b",                     "computs",       "computes"),
+    (r"\bconcern\b",                     "concern",        "concern"),
+    (r"\bconcerns\b",                    "concerns",       "concerns"),
+    (r"\bconclud\b",                     "conclud",        "conclude"),
+    (r"\bconcludd\b",                    "concludd",       "concluded"),
+    (r"\bconcludes\b",                   "concludes",      "concludes"),
+    (r"\bcondit\b",                      "condit",         "condition"),
+    (r"\bcondits\b",                     "condits",        "conditions"),
+    (r"\bconduct\b",                     "conduct",        "conduct"),
+    (r"\bconductd\b",                    "conductd",       "conducted"),
+    (r"\bconducts\b",                    "conducts",       "conducts"),
+    (r"\bconfirm\b",                     "confirm",        "confirm"),
+    (r"\bconfirmd\b",                    "confirmd",       "confirmed"),
+    (r"\bconfirms\b",                    "confirms",       "confirms"),
+    (r"\bconnect\b",                     "connect",        "connect"),
+    (r"\bconnectd\b",                    "connectd",       "connected"),
+    (r"\bconnects\b",                    "connects",       "connects"),
+    (r"\bconsid\b",                      "consid",         "consider"),
+    (r"\bconsidd\b",                     "considd",        "considered"),
+    (r"\bconsids\b",                     "consids",        "considers"),
+    (r"\bconsist\b",                     "consist",        "consist"),
+    (r"\bconsists\b",                    "consists",       "consists"),
+    (r"\bconstruct\b",                   "construct",      "construct"),
+    (r"\bconstructd\b",                  "constructd",     "constructed"),
+    (r"\bconstructs\b",                  "constructs",     "constructs"),
+    (r"\bconsult\b",                     "consult",        "consult"),
+    (r"\bconsultd\b",                    "consultd",       "consulted"),
+    (r"\bconsults\b",                    "consults",       "consults"),
+    (r"\bcontain\b",                     "contain",        "contain"),
+    (r"\bcontaind\b",                    "containd",       "contained"),
+    (r"\bcontains\b",                    "contains",       "contains"),
+    (r"\bcontinu\b",                     "continu",        "continue"),
+    (r"\bcontinud\b",                    "continud",       "continued"),
+    (r"\bcontinues\b",                   "continues",      "continues"),
+    (r"\bcontract\b",                    "contract",       "contract"),
+    (r"\bcontractd\b",                   "contractd",      "contracted"),
+    (r"\bcontracts\b",                   "contracts",      "contracts"),
+    (r"\bcontribut\b",                   "contribut",      "contribute"),
+    (r"\bcontributd\b",                  "contributd",     "contributed"),
+    (r"\bcontributs\b",                  "contributs",     "contributes"),
+    (r"\bcontrol\b",                     "control",        "control"),
+    (r"\bcontrold\b",                    "controld",       "controlled"),
+    (r"\bcontrols\b",                    "controls",       "controls"),
+    (r"\bconvert\b",                     "convert",        "convert"),
+    (r"\bconvertd\b",                    "convertd",       "converted"),
+    (r"\bconverts\b",                    "converts",       "converts"),
+    (r"\bcooperat\b",                    "cooperat",       "cooperate"),
+    (r"\bcooperatd\b",                   "cooperatd",      "cooperated"),
+    (r"\bcooperats\b",                   "cooperats",      "cooperates"),
+    (r"\bcoordinat\b",                   "coordinat",      "coordinate"),
+    (r"\bcoordinatd\b",                  "coordinatd",     "coordinated"),
+    (r"\bcoordinats\b",                  "coordinats",     "coordinates"),
+    (r"\bcorrect\b",                     "correct",        "correct"),
+    (r"\bcorrectd\b",                    "correctd",       "corrected"),
+    (r"\bcorrects\b",                    "corrects",       "corrects"),
+    (r"\bcorrespond\b",                  "correspond",     "correspond"),
+    (r"\bcorresponds\b",                 "corresponds",    "corresponds"),
+    (r"\bcost\b",                        "cost",           "cost"),
+    (r"\bcosts\b",                       "costs",          "costs"),
+    (r"\bcreat\b",                       "creat",          "create"),
+    (r"\bcreatd\b",                      "creatd",         "created"),
+    (r"\bcreats\b",                      "creats",         "creates"),
+    (r"\bcredit\b",                      "credit",         "credit"),
+    (r"\bcredits\b",                     "credits",        "credits"),
+    (r"\bcritic\b",                      "critic",         "critical"),
+    (r"\bcriticals\b",                   "criticals",      "criticals"),
+    (r"\bcumul\b",                       "cumul",          "cumulative"),
+    (r"\bcumulatives\b",                 "cumulatives",    "cumulatives"),
+    (r"\bcurrenc\b",                     "currenc",        "currency"),
+    (r"\bcurrencies\b",                  "currencies",     "currencies"),
+    (r"\bdebt\b",                        "debt",           "debt"),
+    (r"\bdebits\b",                      "debits",         "debts"),
+    (r"\bdecid\b",                       "decid",          "decide"),
+    (r"\bdecidd\b",                      "decidd",         "decided"),
+    (r"\bdecids\b",                       "decids",         "decides"),
+    (r"\bdecreas\b",                     "decreas",        "decrease"),
+    (r"\bdecreasd\b",                    "decreasd",       "decreased"),
+    (r"\bdecreases\b",                   "decreases",      "decreases"),
+    (r"\bdeduct\b",                      "deduct",         "deduct"),
+    (r"\bdeductd\b",                     "deductd",        "deducted"),
+    (r"\bdeducts\b",                     "deducts",        "deducts"),
+    (r"\bdefeas\b",                      "defeas",         "defeased"),
+    (r"\bdefeased\b",                    "defeased",       "defeased"),
+    (r"\bdefeases\b",                    "defeases",       "defeases"),
+    (r"\bdefin\b",                       "defin",          "define"),
+    (r"\bdefind\b",                      "defind",         "defined"),
+    (r"\bdefines\b",                     "defines",        "defines"),
+    (r"\bdeliv\b",                       "deliv",          "deliver"),
+    (r"\bdelivd\b",                      "delivd",         "delivered"),
+    (r"\bdelivs\b",                      "delivs",         "delivers"),
+    (r"\bdemand\b",                      "demand",         "demand"),
+    (r"\bdemands\b",                     "demands",        "demands"),
+    (r"\bdemonstrat\b",                  "demonstrat",     "demonstrate"),
+    (r"\bdemonstratd\b",                 "demonstratd",    "demonstrated"),
+    (r"\bdemonstrats\b",                 "demonstrats",    "demonstrates"),
+    (r"\bdepend\b",                      "depend",         "depend"),
+    (r"\bdepends\b",                     "depends",        "depends"),
+    (r"\bdeposi\b",                      "deposi",         "deposit"),
+    (r"\bdeposits\b",                    "deposits",       "deposits"),
+    (r"\bderiv\b",                       "deriv",          "derive"),
+    (r"\bderivd\b",                      "derivd",         "derived"),
+    (r"\bderivs\b",                      "derivs",         "derives"),
+    (r"\bdescrib\b",                     "describ",        "describe"),
+    (r"\bdescribd\b",                    "describd",       "described"),
+    (r"\bdescribs\b",                    "describs",       "describes"),
+    (r"\bdesign\b",                      "design",         "design"),
+    (r"\bdesignd\b",                     "designd",       "designed"),
+    (r"\bdesigns\b",                     "designs",       "designs"),
+    (r"\bdestin\b",                      "destin",         "destination"),
+    (r"\bdestinats\b",                   "destinats",      "destinations"),
+    (r"\bdetermin\b",                    "determin",       "determine"),
+    (r"\bdetermind\b",                   "determind",      "determined"),
+    (r"\bdetermins\b",                   "determins",      "determines"),
+    (r"\bdevelop\b",                     "develop",        "develop"),
+    (r"\bdevelopd\b",                    "developd",       "developed"),
+    (r"\bdevelops\b",                    "develops",       "develops"),
+    (r"\bdiffer\b",                      "differ",         "differ"),
+    (r"\bdiffers\b",                     "differs",        "differs"),
+    (r"\bdirect\b",                      "direct",         "direct"),
+    (r"\bdirectd\b",                     "directd",        "directed"),
+    (r"\bdirects\b",                     "directs",        "directs"),
+    (r"\bdiscount\b",                    "discount",       "discount"),
+    (r"\bdiscounts\b",                   "discounts",      "discounts"),
+    (r"\bdiscov\b",                      "discov",         "discover"),
+    (r"\bdiscovd\b",                     "discovd",        "discovered"),
+    (r"\bdiscovs\b",                     "discovs",        "discovers"),
+    (r"\bdiscuss\b",                     "discuss",        "discuss"),
+    (r"\bdiscussd\b",                    "discussd",       "discussed"),
+    (r"\bdiscusses\b",                   "discusses",      "discusses"),
+    (r"\bdistribut\b",                   "distribut",      "distribute"),
+    (r"\bdistributd\b",                  "distributd",     "distributed"),
+    (r"\bdistributs\b",                  "distributs",     "distributes"),
+    (r"\bdivers\b",                      "divers",         "diverse"),
+    (r"\bdiverses\b",                    "diverses",       "diverses"),
+    (r"\bdivid\b",                       "divid",          "divide"),
+    (r"\bdividd\b",                      "dividd",         "divided"),
+    (r"\bdivids\b",                      "divids",         "divides"),
+    (r"\bdivis\b",                       "divis",          "division"),
+    (r"\bdivisions\b",                   "divisions",      "divisions"),
+    (r"\bdocument\b",                    "document",       "document"),
+    (r"\bdocuments\b",                   "documents",      "documents"),
+    (r"\bdon\b",                         "don",            "donation"),
+    (r"\bdonations\b",                   "donations",      "donations"),
+    (r"\bdoubl\b",                       "doubl",          "double"),
+    (r"\bdoubld\b",                      "doubld",         "doubled"),
+    (r"\bdoubles\b",                     "doubles",        "doubles"),
+    (r"\bdoubt\b",                       "doubt",          "doubt"),
+    (r"\bdoubts\b",                      "doubts",         "doubts"),
+    (r"\bdraft\b",                       "draft",          "draft"),
+    (r"\bdrafts\b",                      "drafts",         "drafts"),
+    (r"\bdraw\b",                        "draw",           "draw"),
+    (r"\bdrawd\b",                       "drawd",          "drawn"),
+    (r"\bdraws\b",                       "draws",          "draws"),
+    (r"\bdue\b",                         "due",            "due"),
+    (r"\bdues\b",                        "dues",           "dues"),
+    (r"\bdur\b",                         "dur",            "duration"),
+    (r"\bdurations\b",                   "durations",      "durations"),
+    (r"\beffect\b",                      "effect",         "effect"),
+    (r"\beffects\b",                     "effects",        "effects"),
+    (r"\beffici\b",                      "effici",         "efficient"),
+    (r"\befficients\b",                  "efficients",     "efficients"),
+    (r"\beliminat\b",                    "eliminat",       "eliminate"),
+    (r"\beliminatd\b",                   "eliminatd",      "eliminated"),
+    (r"\beliminats\b",                   "eliminats",      "eliminates"),
+    (r"\bemiss\b",                       "emiss",          "emission"),
+    (r"\bemissions\b",                   "emissions",      "emissions"),
+    (r"\bemphas\b",                      "emphas",         "emphasize"),
+    (r"\bemphasd\b",                     "emphasd",        "emphasized"),
+    (r"\bemphasizes\b",                  "emphasizes",     "emphasizes"),
+    (r"\bemploy\b",                      "employ",         "employ"),
+    (r"\bemploys\b",                     "employs",        "employs"),
+    (r"\benabl\b",                       "enabl",          "enable"),
+    (r"\benabld\b",                      "enabld",         "enabled"),
+    (r"\benables\b",                     "enables",        "enables"),
+    (r"\bencourag\b",                    "encourag",       "encourage"),
+    (r"\bencouragd\b",                   "encouragd",      "encouraged"),
+    (r"\bencourages\b",                  "encourages",     "encourages"),
+    (r"\bend\b",                         "end",            "end"),
+    (r"\bends\b",                        "ends",           "ends"),
+    (r"\benforc\b",                      "enforc",         "enforce"),
+    (r"\benforcd\b",                     "enforcd",        "enforced"),
+    (r"\benforces\b",                    "enforces",       "enforces"),
+    (r"\bengag\b",                       "engag",          "engage"),
+    (r"\bengagd\b",                      "engagd",         "engaged"),
+    (r"\bengages\b",                     "engages",        "engages"),
+    (r"\benhanc\b",                      "enhanc",         "enhance"),
+    (r"\benhancd\b",                     "enhancd",        "enhanced"),
+    (r"\benhances\b",                    "enhances",       "enhances"),
+    (r"\benjoy\b",                       "enjoy",          "enjoy"),
+    (r"\benjoys\b",                      "enjoys",         "enjoys"),
+    (r"\bensur\b",                       "ensur",          "ensure"),
+    (r"\bensurd\b",                      "ensurd",         "ensured"),
+    (r"\bensures\b",                     "ensures",        "ensures"),
+    (r"\bent\b",                         "ent",            "entity"),
+    (r"\bentities\b",                    "entities",       "entities"),
+    (r"\bequal\b",                       "equal",          "equal"),
+    (r"\bequals\b",                     "equals",         "equals"),
+    (r"\bequip\b",                       "equip",          "equip"),
+    (r"\bequipd\b",                      "equipd",         "equipped"),
+    (r"\bequips\b",                      "equips",         "equips"),
+    (r"\berror\b",                       "error",          "error"),
+    (r"\berrors\b",                      "errors",         "errors"),
+    (r"\bestablish\b",                   "establish",      "establish"),
+    (r"\bestablishd\b",                  "establishd",     "established"),
+    (r"\bestablishes\b",                 "establishes",    "establishes"),
+    (r"\bestim\b",                       "estim",          "estimate"),
+    (r"\bestimd\b",                      "estimd",         "estimated"),
+    (r"\bestims\b",                      "estims",         "estimates"),
+    (r"\bevaluat\b",                     "evaluat",        "evaluate"),
+    (r"\bevaluatd\b",                    "evaluatd",       "evaluated"),
+    (r"\bevaluats\b",                    "evaluats",       "evaluates"),
+    (r"\bevent\b",                       "event",          "event"),
+    (r"\bevents\b",                      "events",         "events"),
+    (r"\bevid\b",                        "evid",           "evidence"),
+    (r"\bevidences\b",                   "evidences",      "evidences"),
+    (r"\bexamin\b",                      "examin",         "examine"),
+    (r"\bexamind\b",                     "examind",        "examined"),
+    (r"\bexamines\b",                    "examines",       "examines"),
+    (r"\bexceed\b",                      "exceed",         "exceed"),
+    (r"\bexceeds\b",                     "exceeds",        "exceeds"),
+    (r"\bexcept\b",                      "except",         "except"),
+    (r"\bexcepts\b",                     "excepts",        "excepts"),
+    (r"\bexchang\b",                     "exchang",        "exchange"),
+    (r"\bexchanges\b",                   "exchanges",      "exchanges"),
+    (r"\bexclud\b",                      "exclud",         "exclude"),
+    (r"\bexcludd\b",                     "excludd",        "excluded"),
+    (r"\bexcludes\b",                    "excludes",       "excludes"),
+    (r"\bexecut\b",                      "execut",         "execute"),
+    (r"\bexecutd\b",                     "executd",        "executed"),
+    (r"\bexecutes\b",                    "executes",       "executes"),
+    (r"\bexercis\b",                     "exercis",        "exercise"),
+    (r"\bexercises\b",                   "exercises",      "exercises"),
+    (r"\bexist\b",                       "exist",          "exist"),
+    (r"\bexists\b",                      "exists",         "exists"),
+    (r"\bexpand\b",                      "expand",         "expand"),
+    (r"\bexpandd\b",                     "expandd",        "expanded"),
+    (r"\bexpands\b",                     "expands",        "expands"),
+    (r"\bexpect\b",                      "expect",         "expect"),
+    (r"\bexpects\b",                     "expects",        "expects"),
+    (r"\bexpens\b",                      "expens",         "expense"),
+    (r"\bexpenses\b",                    "expenses",       "expenses"),
+    (r"\bexperi\b",                      "experi",         "experience"),
+    (r"\bexperiences\b",                 "experiences",    "experiences"),
+    (r"\bexplain\b",                     "explain",        "explain"),
+    (r"\bexplaind\b",                    "explaind",       "explained"),
+    (r"\bexplains\b",                    "explains",       "explains"),
+    (r"\bexplor\b",                      "explor",         "explore"),
+    (r"\bexplord\b",                     "explord",        "explored"),
+    (r"\bexplores\b",                    "explores",       "explores"),
+    (r"\bexport\b",                      "export",         "export"),
+    (r"\bexports\b",                     "exports",        "exports"),
+    (r"\bextend\b",                      "extend",         "extend"),
+    (r"\bextendd\b",                     "extendd",        "extended"),
+    (r"\bextends\b",                     "extends",        "extends"),
+    (r"\bextract\b",                     "extract",        "extract"),
+    (r"\bextracts\b",                    "extracts",        "extracts"),
+    (r"\bfacilitat\b",                   "facilitat",      "facilitate"),
+    (r"\bfacilitatd\b",                  "facilitatd",     "facilitated"),
+    (r"\bfacilitats\b",                  "facilitats",     "facilitates"),
+    (r"\bfactor\b",                      "factor",         "factor"),
+    (r"\bfactors\b",                     "factors",        "factors"),
+    (r"\bfail\b",                        "fail",           "fail"),
+    (r"\bfails\b",                       "fails",          "fails"),
+    (r"\bfavor\b",                       "favor",          "favor"),
+    (r"\bfavors\b",                      "favors",         "favors"),
+    (r"\bfeasibl\b",                     "feasibl",        "feasible"),
+    (r"\bfeasibles\b",                   "feasibles",      "feasibles"),
+    (r"\bfee\b",                         "fee",            "fee"),
+    (r"\bfees\b",                        "fees",           "fees"),
+    (r"\bfetch\b",                       "fetch",          "fetch"),
+    (r"\bfetchs\b",                      "fetchs",         "fetches"),
+    (r"\bfield\b",                       "field",          "field"),
+    (r"\bfields\b",                      "fields",         "fields"),
+    (r"\bfile\b",                        "file",           "file"),
+    (r"\bfiles\b",                       "files",          "files"),
+    (r"\bfill\b",                        "fill",           "fill"),
+    (r"\bfills\b",                       "fills",          "fills"),
+    (r"\bfinanc\b",                      "financ",         "finance"),
+    (r"\bfinances\b",                    "finances",       "finances"),
+    (r"\bfind\b",                        "find",           "find"),
+    (r"\bfinds\b",                       "finds",          "finds"),
+    (r"\bfinish\b",                      "finish",         "finish"),
+    (r"\bfinishs\b",                     "finishs",        "finishes"),
+    (r"\bfirm\b",                        "firm",           "firm"),
+    (r"\bfirms\b",                       "firms",          "firms"),
+    (r"\bfit\b",                         "fit",            "fit"),
+    (r"\bfits\b",                        "fits",           "fits"),
+    (r"\bfix\b",                         "fix",            "fix"),
+    (r"\bfixs\b",                        "fixs",           "fixes"),
+    (r"\bfocus\b",                       "focus",          "focus"),
+    (r"\bfocuses\b",                     "focuses",        "focuses"),
+    (r"\bfollow\b",                      "follow",         "follow"),
+    (r"\bfollows\b",                     "follows",        "follows"),
+    (r"\bforc\b",                        "forc",           "force"),
+    (r"\bforces\b",                      "forces",         "forces"),
+    (r"\bforecast\b",                    "forecast",       "forecast"),
+    (r"\bforecasts\b",                   "forecasts",      "forecasts"),
+    (r"\bform\b",                        "form",           "form"),
+    (r"\bforms\b",                       "forms",          "forms"),
+    (r"\bformula\b",                     "formula",        "formula"),
+    (r"\bformulas\b",                    "formulas",       "formulas"),
+    (r"\bforward\b",                     "forward",        "forward"),
+    (r"\bforwards\b",                    "forwards",       "forwards"),
+    (r"\bfound\b",                       "found",          "found"),
+    (r"\bfounds\b",                      "founds",         "founds"),
+    (r"\bframe\b",                       "frame",          "frame"),
+    (r"\bframes\b",                      "frames",         "frames"),
+    (r"\bfre\b",                         "fre",            "free"),
+    (r"\bfrees\b",                       "frees",          "frees"),
+    (r"\bfrequenc\b",                    "frequenc",       "frequency"),
+    (r"\bfrequencies\b",                 "frequencies",    "frequencies"),
+    (r"\bfund\b",                        "fund",           "fund"),
+    (r"\bfunds\b",                       "funds",          "funds"),
+    (r"\bgain\b",                        "gain",           "gain"),
+    (r"\bgains\b",                       "gains",          "gains"),
+    (r"\bgather\b",                      "gather",         "gather"),
+    (r"\bgathers\b",                     "gathers",        "gathers"),
+    (r"\bgener\b",                       "gener",          "general"),
+    (r"\bgenerals\b",                    "generals",       "generals"),
+    (r"\bgenerat\b",                     "generat",        "generate"),
+    (r"\bgeneratd\b",                    "generatd",       "generated"),
+    (r"\bgenerats\b",                    "generats",       "generates"),
+    (r"\bget\b",                         "get",            "get"),
+    (r"\bgets\b",                        "gets",           "gets"),
+    (r"\bgive\b",                        "give",           "give"),
+    (r"\bgives\b",                       "gives",          "gives"),
+    (r"\bgo\b",                          "go",             "go"),
+    (r"\bgoes\b",                        "goes",           "goes"),
+    (r"\bgovern\b",                      "govern",         "govern"),
+    (r"\bgoverns\b",                     "governs",        "governs"),
+    (r"\bgrant\b",                       "grant",          "grant"),
+    (r"\bgrants\b",                      "grants",         "grants"),
+    (r"\bgroup\b",                       "group",          "group"),
+    (r"\bgroups\b",                      "groups",         "groups"),
+    (r"\bgrow\b",                        "grow",           "grow"),
+    (r"\bgrows\b",                       "grows",          "grows"),
+    (r"\bguarante\b",                    "guarante",       "guarantee"),
+    (r"\bguarantees\b",                  "guarantees",     "guarantees"),
+    (r"\bguid\b",                        "guid",           "guide"),
+    (r"\bguids\b",                       "guids",          "guides"),
+    (r"\bhandl\b",                       "handl",          "handle"),
+    (r"\bhandld\b",                      "handld",         "handled"),
+    (r"\bhandles\b",                     "handles",        "handles"),
+    (r"\bhappen\b",                      "happen",         "happen"),
+    (r"\bhappens\b",                     "happens",        "happens"),
+    (r"\bhave\b",                        "have",           "have"),
+    (r"\bhas\b",                         "has",            "has"),
+    (r"\bhave\b",                        "have",           "have"),
+    (r"\bhead\b",                        "head",           "head"),
+    (r"\bheads\b",                       "heads",          "heads"),
+    (r"\bhelp\b",                        "help",           "help"),
+    (r"\bhelps\b",                       "helps",          "helps"),
+    (r"\bhigh\b",                        "high",           "high"),
+    (r"\bhighs\b",                       "highs",          "highs"),
+    (r"\bhold\b",                        "hold",           "hold"),
+    (r"\bholds\b",                       "holds",          "holds"),
+    (r"\bidentif\b",                     "identif",        "identify"),
+    (r"\bidentifd\b",                    "identifd",       "identified"),
+    (r"\bidentifs\b",                    "identifs",       "identifies"),
+    (r"\bignor\b",                       "ignor",          "ignore"),
+    (r"\bignd\b",                        "ignd",           "ignored"),
+    (r"\bignores\b",                     "ignores",        "ignores"),
+    (r"\bimpact\b",                      "impact",         "impact"),
+    (r"\bimpacts\b",                     "impacts",        "impacts"),
+    (r"\bimplement\b",                   "implement",      "implement"),
+    (r"\bimplements\b",                  "implements",     "implements"),
+    (r"\bimplic\b",                      "implic",         "imply"),
+    (r"\bimplied\b",                     "implied",        "implied"),
+    (r"\bimplies\b",                     "implies",        "implies"),
+    (r"\bimport\b",                      "import",         "import"),
+    (r"\bimports\b",                     "imports",        "imports"),
+    (r"\bimpos\b",                       "impos",          "impose"),
+    (r"\bimposd\b",                      "imposd",         "imposed"),
+    (r"\bimposes\b",                     "imposes",        "imposes"),
+    (r"\bimprov\b",                      "improv",         "improve"),
+    (r"\bimprovd\b",                     "improvd",        "improved"),
+    (r"\bimproves\b",                    "improves",       "improves"),
+    (r"\binclud\b",                      "includ",         "include"),
+    (r"\bincludd\b",                     "includd",        "included"),
+    (r"\bincludes\b",                    "includes",       "includes"),
+    (r"\bincom\b",                       "incom",          "income"),
+    (r"\bincomes\b",                     "incomes",        "incomes"),
+    (r"\bincreas\b",                     "increas",        "increase"),
+    (r"\bincreasd\b",                    "increasd",       "increased"),
+    (r"\bincreases\b",                   "increases",      "increases"),
+    (r"\bincur\b",                       "incur",          "incur"),
+    (r"\bincurd\b",                      "incurd",         "incurred"),
+    (r"\bincurs\b",                      "incurs",         "incurs"),
+    (r"\bindepend\b",                    "independ",       "independent"),
+    (r"\bindependents\b",                "independents",   "independents"),
+    (r"\bindic\b",                       "indic",          "indicate"),
+    (r"\bindicatd\b",                    "indicatd",       "indicated"),
+    (r"\bindicates\b",                   "indicates",      "indicates"),
+    (r"\bindirect\b",                    "indirect",       "indirect"),
+    (r"\bindirects\b",                   "indirects",      "indirects"),
+    (r"\bindividu\b",                    "individu",       "individual"),
+    (r"\bindividuals\b",                 "individuals",    "individuals"),
+    (r"\binduc\b",                       "induc",          "induce"),
+    (r"\binducd\b",                      "inducd",         "induced"),
+    (r"\binduces\b",                     "induces",        "induces"),
+    (r"\bindustr\b",                     "industr",        "industry"),
+    (r"\bindustries\b",                  "industries",     "industries"),
+    (r"\binfluenc\b",                    "influenc",       "influence"),
+    (r"\binfluences\b",                  "influences",     "influences"),
+    (r"\binform\b",                      "inform",         "inform"),
+    (r"\binformd\b",                     "informd",        "informed"),
+    (r"\binforms\b",                     "informs",        "informs"),
+    (r"\binherit\b",                     "inherit",        "inherit"),
+    (r"\binherits\b",                    "inherits",       "inherits"),
+    (r"\binitial\b",                     "initial",        "initial"),
+    (r"\binitials\b",                    "initials",       "initials"),
+    (r"\binitiat\b",                     "initiat",        "initiate"),
+    (r"\binitiatd\b",                    "initiatd",       "initiated"),
+    (r"\binitiates\b",                   "initiates",      "initiates"),
+    (r"\binput\b",                       "input",          "input"),
+    (r"\binputs\b",                      "inputs",         "inputs"),
+    (r"\binspect\b",                     "inspect",        "inspect"),
+    (r"\binspects\b",                    "inspects",       "inspects"),
+    (r"\binstal\b",                      "instal",         "install"),
+    (r"\binstalld\b",                    "installd",       "installed"),
+    (r"\binstalls\b",                    "installs",       "installs"),
+    (r"\binstitut\b",                    "institut",       "institute"),
+    (r"\binstitutes\b",                  "institutes",     "institutes"),
+    (r"\binsur\b",                       "insur",          "insure"),
+    (r"\binsurd\b",                      "insurd",         "insured"),
+    (r"\binsures\b",                     "insures",        "insures"),
+    (r"\bintegrat\b",                    "integrat",       "integrate"),
+    (r"\bintegratd\b",                   "integratd",      "integrated"),
+    (r"\bintegrats\b",                   "integrats",      "integrates"),
+    (r"\bintend\b",                      "intend",         "intend"),
+    (r"\bintends\b",                     "intends",        "intends"),
+    (r"\binteract\b",                    "interact",       "interact"),
+    (r"\binteracts\b",                   "interacts",      "interacts"),
+    (r"\binterest\b",                    "interest",       "interest"),
+    (r"\binterests\b",                   "interests",      "interests"),
+    (r"\binterfer\b",                    "interfer",       "interfere"),
+    (r"\binterferd\b",                   "interferd",      "interfered"),
+    (r"\binterferes\b",                  "interferes",     "interferes"),
+    (r"\binterpret\b",                   "interpret",      "interpret"),
+    (r"\binterprets\b",                  "interprets",     "interprets"),
+    (r"\binterrupt\b",                   "interrupt",      "interrupt"),
+    (r"\binterrupts\b",                  "interrupts",     "interrupts"),
+    (r"\binterven\b",                    "interven",       "intervene"),
+    (r"\bintervend\b",                   "intervend",      "intervened"),
+    (r"\bintervenes\b",                  "intervenes",     "intervenes"),
+    (r"\bintroduc\b",                    "introduc",       "introduce"),
+    (r"\bintroducd\b",                   "introducd",      "introduced"),
+    (r"\bintroduces\b",                  "introduces",     "introduces"),
+    (r"\binvent\b",                      "invent",         "invent"),
+    (r"\binventd\b",                     "inventd",        "invented"),
+    (r"\binvents\b",                     "invents",        "invents"),
+    (r"\binvest\b",                      "invest",         "invest"),
+    (r"\binvestd\b",                     "investd",        "invested"),
+    (r"\binvests\b",                     "invests",        "invests"),
+    (r"\binvit\b",                       "invit",          "invite"),
+    (r"\binvitd\b",                      "invitd",         "invited"),
+    (r"\binvites\b",                     "invites",        "invites"),
+    (r"\binvolv\b",                      "involv",         "involve"),
+    (r"\binvolvd\b",                     "involvd",        "involved"),
+    (r"\binvolves\b",                    "involves",       "involves"),
+    (r"\bissu\b",                        "issu",           "issue"),
+    (r"\bissues\b",                      "issues",         "issues"),
+    (r"\bitem\b",                        "item",           "item"),
+    (r"\bitems\b",                       "items",          "items"),
+    (r"\bjoin\b",                        "join",           "join"),
+    (r"\bjoins\b",                       "joins",          "joins"),
+    (r"\bjudg\b",                        "judg",           "judge"),
+    (r"\bjudgd\b",                       "judgd",          "judged"),
+    (r"\bjudges\b",                      "judges",         "judges"),
+    (r"\bkeep\b",                        "keep",           "keep"),
+    (r"\bkeeps\b",                       "keeps",          "keeps"),
+    (r"\bknow\b",                        "know",           "know"),
+    (r"\bknows\b",                       "knows",          "knows"),
+    (r"\blabel\b",                       "label",          "label"),
+    (r"\blabels\b",                      "labels",         "labels"),
+    (r"\black\b",                        "lack",           "lack"),
+    (r"\blacks\b",                       "lacks",          "lacks"),
+    (r"\bland\b",                        "land",           "land"),
+    (r"\blands\b",                       "lands",          "lands"),
+    (r"\blanguag\b",                     "languag",        "language"),
+    (r"\blanguages\b",                   "languages",      "languages"),
+    (r"\blead\b",                        "lead",           "lead"),
+    (r"\bleads\b",                       "leads",          "leads"),
+    (r"\blearn\b",                       "learn",          "learn"),
+    (r"\blearns\b",                      "learns",         "learns"),
+    (r"\bleas\b",                        "leas",           "lease"),
+    (r"\bleases\b",                      "leases",         "leases"),
+    (r"\bleav\b",                        "leav",           "leave"),
+    (r"\bleavd\b",                       "leavd",          "left"),
+    (r"\bleaves\b",                      "leaves",         "leaves"),
+    (r"\blegal\b",                       "legal",          "legal"),
+    (r"\blegals\b",                      "legals",         "legals"),
+    (r"\bless\b",                        "less",           "less"),
+    (r"\blesses\b",                      "lesses",         "lesses"),
+    (r"\blevel\b",                       "level",          "level"),
+    (r"\blevels\b",                      "levels",         "levels"),
+    (r"\blicens\b",                      "licens",         "license"),
+    (r"\blicenses\b",                    "licenses",       "licenses"),
+    (r"\blimit\b",                       "limit",          "limit"),
+    (r"\blimits\b",                      "limits",         "limits"),
+    (r"\blink\b",                        "link",           "link"),
+    (r"\blinks\b",                       "links",          "links"),
+    (r"\blist\b",                        "list",           "list"),
+    (r"\blists\b",                       "lists",          "lists"),
+    (r"\bloan\b",                        "loan",           "loan"),
+    (r"\bloans\b",                       "loans",          "loans"),
+    (r"\blocal\b",                       "local",          "local"),
+    (r"\blocals\b",                      "locals",         "locals"),
+    (r"\blocat\b",                       "locat",          "locate"),
+    (r"\blocatd\b",                      "locatd",         "located"),
+    (r"\blocates\b",                     "locates",        "locates"),
+    (r"\block\b",                        "lock",           "lock"),
+    (r"\blocks\b",                       "locks",          "locks"),
+    (r"\blog\b",                         "log",            "log"),
+    (r"\blogs\b",                        "logs",           "logs"),
+    (r"\blong\b",                        "long",           "long"),
+    (r"\blongs\b",                       "longs",          "longs"),
+    (r"\blook\b",                        "look",           "look"),
+    (r"\blooks\b",                       "looks",          "looks"),
+    (r"\blos\b",                         "los",            "loss"),
+    (r"\blosses\b",                      "losses",         "losses"),
+    (r"\blos\b",                         "los",            "loss"),
+    (r"\blosses\b",                      "losses",         "losses"),
+    (r"\blow\b",                         "low",            "low"),
+    (r"\blows\b",                        "lows",           "lows"),
+    (r"\bmaintain\b",                    "maintain",       "maintain"),
+    (r"\bmaintains\b",                   "maintains",      "maintains"),
+    (r"\bmajor\b",                       "major",          "major"),
+    (r"\bmajors\b",                      "majors",         "majors"),
+    (r"\bmak\b",                         "mak",            "make"),
+    (r"\bmakes\b",                       "makes",          "makes"),
+    (r"\bmanag\b",                       "manag",          "manage"),
+    (r"\bmanagd\b",                      "managd",         "managed"),
+    (r"\bmanages\b",                     "manages",        "manages"),
+    (r"\bmanufactur\b",                  "manufactur",     "manufacture"),
+    (r"\bmanufacturd\b",                 "manufacturd",    "manufactured"),
+    (r"\bmanufactures\b",                "manufactures",   "manufactures"),
+    (r"\bmarket\b",                      "market",         "market"),
+    (r"\bmarkets\b",                     "markets",        "markets"),
+    (r"\bmatch\b",                       "match",          "match"),
+    (r"\bmatchs\b",                      "matchs",         "matches"),
+    (r"\bmateri\b",                      "materi",         "material"),
+    (r"\bmaterials\b",                   "materials",      "materials"),
+    (r"\bmatur\b",                       "matur",          "mature"),
+    (r"\bmaturd\b",                      "maturd",         "matured"),
+    (r"\b matures\b",                    " matures",       "matures"),
+    (r"\bmaxim\b",                       "maxim",          "maximize"),
+    (r"\bmaximizd\b",                    "maximizd",       "maximized"),
+    (r"\bmaximizes\b",                   "maximizes",      "maximizes"),
+    (r"\bmeasur\b",                      "measur",         "measure"),
+    (r"\bmeasurd\b",                     "measurd",        "measured"),
+    (r"\bmeasures\b",                    "measures",       "measures"),
+    (r"\bmeet\b",                        "meet",           "meet"),
+    (r"\bmeets\b",                       "meets",          "meets"),
+    (r"\bmember\b",                      "member",         "member"),
+    (r"\bmembers\b",                     "members",        "members"),
+    (r"\bmerg\b",                        "merg",           "merge"),
+    (r"\bmergd\b",                       "mergd",         "merged"),
+    (r"\bmerges\b",                      "merges",         "merges"),
+    (r"\bmethod\b",                      "method",         "method"),
+    (r"\bmethods\b",                     "methods",        "methods"),
+    (r"\bminim\b",                       "minim",          "minimize"),
+    (r"\bminimizd\b",                    "minimizd",       "minimized"),
+    (r"\bminimizes\b",                   "minimizes",      "minimizes"),
+    (r"\bmiss\b",                        "miss",           "miss"),
+    (r"\bmisses\b",                      "misses",         "misses"),
+    (r"\bmix\b",                         "mix",            "mix"),
+    (r"\bmixes\b",                       "mixes",          "mixes"),
+    (r"\bmodel\b",                       "model",          "model"),
+    (r"\bmodels\b",                      "models",         "models"),
+    (r"\bmodif\b",                       "modif",          "modify"),
+    (r"\bmodifd\b",                      "modifd",         "modified"),
+    (r"\bmodifies\b",                    "modifies",       "modifies"),
+    (r"\bmonitor\b",                     "monitor",        "monitor"),
+    (r"\bmonitors\b",                    "monitors",       "monitors"),
+    (r"\bmonth\b",                       "month",          "month"),
+    (r"\bmonths\b",                      "months",         "months"),
+    (r"\bmotiv\b",                       "motiv",          "motivate"),
+    (r"\bmotivatd\b",                    "motivatd",       "motivated"),
+    (r"\bmotivates\b",                   "motivates",      "motivates"),
+    (r"\bmov\b",                         "mov",            "move"),
+    (r"\bmoves\b",                       "moves",          "moves"),
+    (r"\bmultipl\b",                     "multipl",        "multiple"),
+    (r"\bmultiples\b",                   "multiples",      "multiples"),
+    (r"\bneed\b",                        "need",           "need"),
+    (r"\bneeds\b",                       "needs",          "needs"),
+    (r"\bnegativ\b",                     "negativ",        "negative"),
+    (r"\bnegatives\b",                   "negatives",      "negatives"),
+    (r"\bnegoti\b",                      "negoti",         "negotiate"),
+    (r"\bnegotiatd\b",                   "negotiatd",      "negotiated"),
+    (r"\bnegotiates\b",                  "negotiates",     "negotiates"),
+    (r"\bnet\b",                         "net",            "net"),
+    (r"\bnets\b",                        "nets",           "nets"),
+    (r"\bnew\b",                         "new",            "new"),
+    (r"\bnews\b",                        "news",           "news"),
+    (r"\bnon\b",                         "non",            "non"),
+    (r"\bnons\b",                        "nons",           "nons"),
+    (r"\bnot\b",                         "not",            "not"),
+    (r"\bnots\b",                        "nots",           "nots"),
+    (r"\bnotic\b",                       "notic",          "notice"),
+    (r"\bnoticed\b",                     "noticed",        "noticed"),
+    (r"\bnotices\b",                     "notices",        "notices"),
+    (r"\bnumber\b",                      "number",         "number"),
+    (r"\bnumbers\b",                     "numbers",        "numbers"),
+    (r"\bobject\b",                      "object",         "object"),
+    (r"\bobjects\b",                     "objects",        "objects"),
+    (r"\boblig\b",                       "oblig",          "oblige"),
+    (r"\bobligd\b",                      "obligd",         "obliged"),
+    (r"\bobliges\b",                     "obliges",        "obliges"),
+    (r"\bobtain\b",                      "obtain",         "obtain"),
+    (r"\bobtains\b",                     "obtains",        "obtains"),
+    (r"\boffer\b",                       "offer",          "offer"),
+    (r"\boffers\b",                      "offers",          "offers"),
+    (r"\boffic\b",                       "offic",          "office"),
+    (r"\boffices\b",                     "offices",        "offices"),
+    (r"\boperat\b",                      "operat",         "operate"),
+    (r"\boperatd\b",                     "operatd",        "operated"),
+    (r"\boperates\b",                    "operates",       "operates"),
+    (r"\bopportun\b",                    "opportun",       "opportunity"),
+    (r"\bopportunities\b",               "opportunities",  "opportunities"),
+    (r"\boppos\b",                       "oppos",          "oppose"),
+    (r"\bopposd\b",                      "opposd",         "opposed"),
+    (r"\bopposes\b",                     "opposes",        "opposes"),
+    (r"\bopt\b",                         "opt",            "option"),
+    (r"\boptions\b",                     "options",        "options"),
+    (r"\border\b",                       "order",          "order"),
+    (r"\borders\b",                      "orders",         "orders"),
+    (r"\borgani\b",                      "organi",         "organize"),
+    (r"\borgani zd\b",                   "organi zd",      "organized"),
+    (r"\borgani zes\b",                  "organi zes",     "organizes"),
+    (r"\borient\b",                      "orient",         "orient"),
+    (r"\borients\b",                     "orients",        "orients"),
+    (r"\borigin\b",                      "origin",         "origin"),
+    (r"\borigins\b",                     "origins",        "origins"),
+    (r"\bother\b",                       "other",          "other"),
+    (r"\bothers\b",                      "others",         "others"),
+    (r"\bout\b",                         "out",            "out"),
+    (r"\bouts\b",                        "outs",           "outs"),
+    (r"\boutlin\b",                      "outlin",         "outline"),
+    (r"\boutlined\b",                    "outlined",       "outlined"),
+    (r"\boutlines\b",                    "outlines",       "outlines"),
+    (r"\boutperform\b",                  "outperform",     "outperform"),
+    (r"\boutperforms\b",                 "outperforms",    "outperforms"),
+    (r"\boutstand\b",                    "outstand",       "outstanding"),
+    (r"\boutstandings\b",                "outstandings",   "outstandings"),
+    (r"\bover\b",                        "over",           "over"),
+    (r"\bovers\b",                       "overs",          "overs"),
+    (r"\bovercom\b",                     "overcom",        "overcome"),
+    (r"\bovercomed\b",                   "overcomed",      "overcame"),
+    (r"\bovercomes\b",                   "overcomes",      "overcomes"),
+    (r"\boverlook\b",                    "overlook",       "overlook"),
+    (r"\boverlooks\b",                   "overlooks",      "overlooks"),
+    (r"\boverrid\b",                     "overrid",        "override"),
+    (r"\boverridd\b",                    "overridd",       "overridden"),
+    (r"\boverrides\b",                   "overrides",      "overrides"),
+    (r"\boversight\b",                   "oversight",      "oversight"),
+    (r"\boversights\b",                  "oversights",     "oversights"),
+    (r"\bown\b",                         "own",            "own"),
+    (r"\bowns\b",                        "owns",           "owns"),
+    (r"\bpackag\b",                      "packag",         "package"),
+    (r"\bpackages\b",                    "packages",       "packages"),
+    (r"\bpart\b",                        "part",           "part"),
+    (r"\bparts\b",                       "parts",          "parts"),
+    (r"\bparticipat\b",                  "participat",     "participate"),
+    (r"\bparticipatd\b",                 "participatd",    "participated"),
+    (r"\bparticipates\b",                "participates",   "participates"),
+    (r"\bparticular\b",                  "particular",     "particular"),
+    (r"\bparticulars\b",                 "particulars",    "particulars"),
+    (r"\bpass\b",                        "pass",           "pass"),
+    (r"\bpasses\b",                      "passes",          "passes"),
+    (r"\bpay\b",                         "pay",            "pay"),
+    (r"\bpays\b",                        "pays",           "pays"),
+    (r"\bperform\b",                     "perform",        "perform"),
+    (r"\bperforms\b",                    "performs",       "performs"),
+    (r"\bperiod\b",                      "period",         "period"),
+    (r"\bperiods\b",                     "periods",        "periods"),
+    (r"\bpermit\b",                      "permit",         "permit"),
+    (r"\bpermits\b",                     "permits",        "permits"),
+    (r"\bperson\b",                      "person",         "person"),
+    (r"\bpersons\b",                     "persons",        "persons"),
+    (r"\bphase\b",                       "phase",          "phase"),
+    (r"\bphases\b",                      "phases",          "phases"),
+    (r"\bphysic\b",                      "physic",         "physical"),
+    (r"\bphysicals\b",                   "physicals",      "physicals"),
+    (r"\bpick\b",                        "pick",           "pick"),
+    (r"\bpicks\b",                       "picks",          "picks"),
+    (r"\bplace\b",                       "place",          "place"),
+    (r"\bplaces\b",                      "places",         "places"),
+    (r"\bplan\b",                        "plan",           "plan"),
+    (r"\bplans\b",                       "plans",          "plans"),
+    (r"\bplay\b",                        "play",           "play"),
+    (r"\bplays\b",                       "plays",          "plays"),
+    (r"\bpoint\b",                       "point",          "point"),
+    (r"\bpoints\b",                      "points",         "points"),
+    (r"\bposit\b",                       "posit",          "positive"),
+    (r"\bpositives\b",                   "positives",      "positives"),
+    (r"\bpossess\b",                     "possess",        "possess"),
+    (r"\bpossesses\b",                   "possesses",      "possesses"),
+    (r"\bpost\b",                        "post",           "post"),
+    (r"\bposts\b",                       "posts",          "posts"),
+    (r"\bpotenti\b",                     "potenti",        "potential"),
+    (r"\bpotentials\b",                  "potentials",     "potentials"),
+    (r"\bpractic\b",                     "practic",        "practice"),
+    (r"\bpractices\b",                   "practices",      "practices"),
+    (r"\bpre\b",                         "pre",            "pre"),
+    (r"\bpres\b",                        "pres",           "pres"),
+    (r"\bpreced\b",                      "preced",         "precede"),
+    (r"\bprecedd\b",                     "precedd",        "preceded"),
+    (r"\bprecedes\b",                    "precedes",       "precedes"),
+    (r"\bprefer\b",                      "prefer",         "prefer"),
+    (r"\bpreferd\b",                     "preferd",        "preferred"),
+    (r"\bpreferes\b",                    "preferes",       "prefers"),
+    (r"\bprepar\b",                      "prepar",         "prepare"),
+    (r"\bprepard\b",                     "prepard",        "prepared"),
+    (r"\bprepares\b",                    "prepares",       "prepares"),
+    (r"\bpresent\b",                     "present",        "present"),
+    (r"\bpresents\b",                    "presents",       "presents"),
+    (r"\bpress\b",                       "press",          "press"),
+    (r"\bpresses\b",                     "presses",        "presses"),
+    (r"\bprevent\b",                     "prevent",        "prevent"),
+    (r"\bprevents\b",                    "prevents",       "prevents"),
+    (r"\bprice\b",                       "price",          "price"),
+    (r"\bprices\b",                      "prices",         "prices"),
+    (r"\bprint\b",                       "print",          "print"),
+    (r"\bprints\b",                      "prints",         "prints"),
+    (r"\bprior\b",                       "prior",          "prior"),
+    (r"\bpriors\b",                      "priors",         "priors"),
+    (r"\bprivat\b",                      "privat",         "private"),
+    (r"\bprivates\b",                    "privates",       "privates"),
+    (r"\bpro\b",                         "pro",            "pro"),
+    (r"\bpros\b",                        "pros",           "pros"),
+    (r"\bproceed\b",                     "proceed",        "proceed"),
+    (r"\bproceeds\b",                    "proceeds",       "proceeds"),
+    (r"\bprocess\b",                     "process",        "process"),
+    (r"\bprocesses\b",                   "processes",      "processes"),
+    (r"\bproduc\b",                      "produc",         "produce"),
+    (r"\bproducd\b",                     "producd",        "produced"),
+    (r"\bproduces\b",                    "produces",       "produces"),
+    (r"\bproduct\b",                     "product",        "product"),
+    (r"\bproducts\b",                    "products",       "products"),
+    (r"\bprofit\b",                      "profit",         "profit"),
+    (r"\bprofits\b",                     "profits",         "profits"),
+    (r"\bprogram\b",                     "program",        "program"),
+    (r"\bprograms\b",                    "programs",       "programs"),
+    (r"\bprogress\b",                    "progress",       "progress"),
+    (r"\bprogresses\b",                  "progresses",     "progresses"),
+    (r"\bproject\b",                     "project",        "project"),
+    (r"\bprojects\b",                    "projects",       "projects"),
+    (r"\bpromot\b",                      "promot",         "promote"),
+    (r"\bpromotd\b",                     "promotd",        "promoted"),
+    (r"\bpromotes\b",                    "promotes",       "promotes"),
+    (r"\bproper\b",                      "proper",         "proper"),
+    (r"\bpropers\b",                     "propers",        "propers"),
+    (r"\bpropos\b",                      "propos",         "propose"),
+    (r"\bproposd\b",                     "proposd",        "proposed"),
+    (r"\bproposes\b",                    "proposes",       "proposes"),
+    (r"\bprotect\b",                     "protect",        "protect"),
+    (r"\bprotects\b",                    "protects",       "protects"),
+    (r"\bprovid\b",                      "provid",         "provide"),
+    (r"\bprovidd\b",                     "providd",        "provided"),
+    (r"\bprovides\b",                    "provides",       "provides"),
+    (r"\bpublic\b",                      "public",         "public"),
+    (r"\bpublics\b",                     "publics",        "publics"),
+    (r"\bpurchas\b",                     "purchas",        "purchase"),
+    (r"\bpurchasd\b",                    "purchasd",       "purchased"),
+    (r"\bpurchases\b",                   "purchases",      "purchases"),
+    (r"\bpurpos\b",                      "purpos",         "purpose"),
+    (r"\bpurposes\b",                    "purposes",       "purposes"),
+    (r"\bpush\b",                        "push",           "push"),
+    (r"\bpushes\b",                      "pushes",         "pushes"),
+    (r"\bput\b",                         "put",            "put"),
+    (r"\bputs\b",                        "puts",           "puts"),
+    (r"\bqualif\b",                      "qualif",         "qualify"),
+    (r"\bqualifd\b",                     "qualifd",        "qualified"),
+    (r"\bqualifies\b",                   "qualifies",      "qualifies"),
+    (r"\bqualit\b",                      "qualit",         "quality"),
+    (r"\bqualities\b",                   "qualities",      "qualities"),
+    (r"\bquantif\b",                     "quantif",        "quantify"),
+    (r"\bquantifd\b",                    "quantifd",       "quantified"),
+    (r"\bquantifies\b",                  "quantifies",     "quantifies"),
+    (r"\bquarter\b",                     "quarter",        "quarter"),
+    (r"\bquarters\b",                    "quarters",       "quarters"),
+    (r"\bquestion\b",                    "question",       "question"),
+    (r"\bquestions\b",                   "questions",      "questions"),
+    (r"\bquick\b",                       "quick",          "quick"),
+    (r"\bquicks\b",                      "quicks",         "quicks"),
+    (r"\bquot\b",                        "quot",           "quote"),
+    (r"\bquotd\b",                       "quotd",          "quoted"),
+    (r"\bquotes\b",                      "quotes",         "quotes"),
+    (r"\brais\b",                        "rais",           "raise"),
+    (r"\braisd\b",                       "raisd",          "raised"),
+    (r"\braises\b",                      "raises",         "raises"),
+    (r"\brang\b",                        "rang",           "range"),
+    (r"\branges\b",                      "ranges",         "ranges"),
+    (r"\brat\b",                         "rat",            "rate"),
+    (r"\brates\b",                       "rates",          "rates"),
+    (r"\bratio\b",                       "ratio",          "ratio"),
+    (r"\bratios\b",                      "ratios",         "ratios"),
+    (r"\breach\b",                       "reach",          "reach"),
+    (r"\breaches\b",                     "reaches",        "reaches"),
+    (r"\bread\b",                        "read",           "read"),
+    (r"\breads\b",                       "reads",          "reads"),
+    (r"\breal\b",                        "real",           "real"),
+    (r"\breals\b",                       "reals",          "reals"),
+    (r"\brealiz\b",                      "realiz",         "realize"),
+    (r"\brealizd\b",                     "realizd",        "realized"),
+    (r"\brealizes\b",                    "realizes",       "realizes"),
+    (r"\breason\b",                      "reason",         "reason"),
+    (r"\breasons\b",                     "reasons",        "reasons"),
+    (r"\breceiv\b",                      "receiv",         "receive"),
+    (r"\breceivd\b",                     "receivd",        "received"),
+    (r"\breceives\b",                    "receives",       "receives"),
+    (r"\brecogn\b",                      "recogn",         "recognize"),
+    (r"\brecognizd\b",                   "recognizd",      "recognized"),
+    (r"\brecognizes\b",                  "recognizes",     "recognizes"),
+    (r"\brecommend\b",                   "recommend",      "recommend"),
+    (r"\brecommends\b",                  "recommends",     "recommends"),
+    (r"\brecord\b",                      "record",         "record"),
+    (r"\brecords\b",                     "records",        "records"),
+    (r"\brecover\b",                     "recover",        "recover"),
+    (r"\brecovers\b",                    "recovers",       "recovers"),
+    (r"\breduc\b",                       "reduc",          "reduce"),
+    (r"\breducd\b",                      "reducd",         "reduced"),
+    (r"\breduces\b",                     "reduces",        "reduces"),
+    (r"\brefer\b",                       "refer",          "refer"),
+    (r"\breferd\b",                      "referd",         "referred"),
+    (r"\breferes\b",                     "referes",        "refers"),
+    (r"\breflect\b",                     "reflect",        "reflect"),
+    (r"\breflects\b",                    "reflects",       "reflects"),
+    (r"\brefus\b",                       "refus",          "refuse"),
+    (r"\brefusd\b",                      "refusd",         "refused"),
+    (r"\brefuses\b",                     "refuses",        "refuses"),
+    (r"\bregard\b",                      "regard",         "regard"),
+    (r"\bregards\b",                     "regards",        "regards"),
+    (r"\bregion\b",                      "region",         "region"),
+    (r"\bregions\b",                     "regions",        "regions"),
+    (r"\bregist\b",                      "regist",         "register"),
+    (r"\bregistd\b",                     "registd",        "registered"),
+    (r"\bregisters\b",                   "registers",      "registers"),
+    (r"\bregul\b",                       "regul",          "regulate"),
+    (r"\bregulatd\b",                    "regulatd",       "regulated"),
+    (r"\bregulates\b",                   "regulates",      "regulates"),
+    (r"\brelat\b",                       "relat",          "relate"),
+    (r"\brelatd\b",                      "relatd",         "related"),
+    (r"\brelates\b",                     "relates",        "relates"),
+    (r"\brelativ\b",                     "relativ",        "relative"),
+    (r"\brelatives\b",                   "relatives",      "relatives"),
+    (r"\breleas\b",                      "releas",         "release"),
+    (r"\breleasd\b",                     "releasd",        "released"),
+    (r"\breleases\b",                    "releases",       "releases"),
+    (r"\brelev\b",                       "relev",          "relevant"),
+    (r"\brelevants\b",                   "relevants",      "relevants"),
+    (r"\breli\b",                        "reli",           "rely"),
+    (r"\brelied\b",                      "relied",         "relied"),
+    (r"\breli es\b",                     "reli es",        "relies"),
+    (r"\bremain\b",                      "remain",         "remain"),
+    (r"\bremains\b",                     "remains",        "remains"),
+    (r"\bremov\b",                       "remov",          "remove"),
+    (r"\bremovd\b",                      "removd",         "removed"),
+    (r"\bremoves\b",                     "removes",        "removes"),
+    (r"\brend\b",                        "rend",           "render"),
+    (r"\brends\b",                       "rends",          "renders"),
+    (r"\brenew\b",                       "renew",          "renew"),
+    (r"\brenews\b",                      "renews",         "renews"),
+    (r"\brepair\b",                      "repair",         "repair"),
+    (r"\brepairs\b",                     "repairs",        "repairs"),
+    (r"\brepeat\b",                      "repeat",         "repeat"),
+    (r"\brepeats\b",                     "repeats",        "repeats"),
+    (r"\breplac\b",                      "replac",         "replace"),
+    (r"\breplacd\b",                     "replacd",        "replaced"),
+    (r"\breplaces\b",                    "replaces",       "replaces"),
+    (r"\breply\b",                       "reply",          "reply"),
+    (r"\breplies\b",                     "replies",        "replies"),
+    (r"\breport\b",                      "report",         "report"),
+    (r"\breports\b",                     "reports",        "reports"),
+    (r"\brepresent\b",                   "represent",      "represent"),
+    (r"\brepresents\b",                  "represents",     "represents"),
+    (r"\brequest\b",                     "request",        "request"),
+    (r"\brequests\b",                    "requests",       "requests"),
+    (r"\brequir\b",                      "requir",         "require"),
+    (r"\brequird\b",                     "requird",        "required"),
+    (r"\brequires\b",                    "requires",       "requires"),
+    (r"\breserv\b",                      "reserv",         "reserve"),
+    (r"\breservd\b",                     "reservd",        "reserved"),
+    (r"\breserves\b",                    "reserves",       "reserves"),
+    (r"\bresolv\b",                      "resolv",         "resolve"),
+    (r"\bresolvd\b",                     "resolvd",        "resolved"),
+    (r"\bresolves\b",                    "resolves",       "resolves"),
+    (r"\bresourc\b",                     "resourc",        "resource"),
+    (r"\bresources\b",                   "resources",      "resources"),
+    (r"\brespons\b",                     "respons",        "respond"),
+    (r"\bresponsd\b",                    "responsd",       "responded"),
+    (r"\bresponses\b",                   "responses",      "responds"),
+    (r"\brestor\b",                      "restor",         "restore"),
+    (r"\brestord\b",                     "restord",        "restored"),
+    (r"\brestores\b",                    "restores",       "restores"),
+    (r"\brestrict\b",                    "restrict",       "restrict"),
+    (r"\brestricts\b",                   "restricts",      "restricts"),
+    (r"\bresult\b",                      "result",         "result"),
+    (r"\bresults\b",                     "results",        "results"),
+    (r"\bretail\b",                      "retail",         "retail"),
+    (r"\bretains\b",                     "retains",        "retains"),
+    (r"\bretir\b",                       "retir",          "retire"),
+    (r"\bretird\b",                      "retird",         "retired"),
+    (r"\bretires\b",                     "retires",        "retires"),
+    (r"\breturn\b",                      "return",         "return"),
+    (r"\breturns\b",                     "returns",        "returns"),
+    (r"\brev\b",                         "rev",            "review"),
+    (r"\breviews\b",                     "reviews",        "reviews"),
+    (r"\brevis\b",                       "revis",          "revise"),
+    (r"\brevisd\b",                      "revisd",         "revised"),
+    (r"\brevises\b",                     "revises",        "revises"),
+    (r"\brisk\b",                        "risk",           "risk"),
+    (r"\brisks\b",                       "risks",          "risks"),
+    (r"\bro\b",                          "ro",             "role"),
+    (r"\broles\b",                       "roles",          "roles"),
+    (r"\brul\b",                         "rul",            "rule"),
+    (r"\brules\b",                       "rules",          "rules"),
+    (r"\brun\b",                         "run",            "run"),
+    (r"\bruns\b",                        "runs",           "runs"),
+    (r"\bsaf\b",                         "saf",            "safe"),
+    (r"\bsafes\b",                       "safes",          "safes"),
+    (r"\bsatisf\b",                      "satisf",         "satisfy"),
+    (r"\bsatisfid\b",                    "satisfid",       "satisfied"),
+    (r"\bsatisfies\b",                   "satisfies",      "satisfies"),
+    (r"\bsav\b",                         "sav",            "save"),
+    (r"\bsaves\b",                       "saves",          "saves"),
+    (r"\bsay\b",                         "say",            "say"),
+    (r"\bsays\b",                        "says",           "says"),
+    (r"\bscal\b",                        "scal",           "scale"),
+    (r"\bscales\b",                      "scales",         "scales"),
+    (r"\bsearch\b",                      "search",         "search"),
+    (r"\bsearches\b",                    "searches",       "searches"),
+    (r"\bseason\b",                      "season",         "season"),
+    (r"\bseasons\b",                     "seasons",        "seasons"),
+    (r"\bsecond\b",                      "second",         "second"),
+    (r"\bseconds\b",                     "seconds",        "seconds"),
+    (r"\bsecur\b",                       "secur",          "secure"),
+    (r"\bsecurd\b",                      "securd",         "secured"),
+    (r"\bsecures\b",                     "secures",        "secures"),
+    (r"\bsee\b",                         "see",            "see"),
+    (r"\bsees\b",                        "sees",           "sees"),
+    (r"\bseek\b",                        "seek",           "seek"),
+    (r"\bseeks\b",                       "seeks",          "seeks"),
+    (r"\bseem\b",                        "seem",           "seem"),
+    (r"\bseems\b",                       "seems",          "seems"),
+    (r"\bsegment\b",                     "segment",        "segment"),
+    (r"\bsegments\b",                    "segments",       "segments"),
+    (r"\bselect\b",                      "select",         "select"),
+    (r"\bselects\b",                     "selects",        "selects"),
+    (r"\bsell\b",                        "sell",           "sell"),
+    (r"\bsells\b",                       "sells",          "sells"),
+    (r"\bsend\b",                        "send",           "send"),
+    (r"\bsends\b",                       "sends",          "sends"),
+    (r"\bsepar\b",                       "separ",          "separate"),
+    (r"\bseparatd\b",                    "separatd",       "separated"),
+    (r"\bseparates\b",                   "separates",      "separates"),
+    (r"\bsequenc\b",                     "sequenc",        "sequence"),
+    (r"\bsequences\b",                   "sequences",      "sequences"),
+    (r"\bseri\b",                        "seri",           "series"),
+    (r"\bseries\b",                      "series",         "series"),
+    (r"\bserv\b",                        "serv",           "serve"),
+    (r"\bservd\b",                       "servd",          "served"),
+    (r"\bserves\b",                      "serves",         "serves"),
+    (r"\bset\b",                         "set",            "set"),
+    (r"\bsets\b",                        "sets",           "sets"),
+    (r"\bsett\b",                        "sett",           "settle"),
+    (r"\bsettd\b",                       "settd",          "settled"),
+    (r"\bsettles\b",                     "settles",        "settles"),
+    (r"\bsever\b",                       "sever",          "severe"),
+    (r"\bsevers\b",                      "severs",         "severs"),
+    (r"\bshare\b",                       "share",          "share"),
+    (r"\bshares\b",                      "shares",         "shares"),
+    (r"\bshift\b",                       "shift",          "shift"),
+    (r"\bshifts\b",                      "shifts",         "shifts"),
+    (r"\bship\b",                        "ship",           "ship"),
+    (r"\bships\b",                       "ships",          "ships"),
+    (r"\bshort\b",                       "short",          "short"),
+    (r"\bshorts\b",                      "shorts",         "shorts"),
+    (r"\bshould\b",                      "should",         "should"),
+    (r"\bshoulds\b",                     "shoulds",        "shoulds"),
+    (r"\bshow\b",                        "show",           "show"),
+    (r"\bshows\b",                       "shows",          "shows"),
+    (r"\bsign\b",                        "sign",           "sign"),
+    (r"\bsigns\b",                       "signs",          "signs"),
+    (r"\bsimilar\b",                     "similar",        "similar"),
+    (r"\bsimilars\b",                    "similars",       "similars"),
+    (r"\bsimpl\b",                       "simpl",          "simple"),
+    (r"\bsimples\b",                     "simples",        "simples"),
+    (r"\bsimul\b",                       "simul",          "simulate"),
+    (r"\bsimulatd\b",                    "simulatd",       "simulated"),
+    (r"\bsimulates\b",                   "simulates",      "simulates"),
+    (r"\bsingl\b",                       "singl",          "single"),
+    (r"\bsingles\b",                     "singles",        "singles"),
+    (r"\bsit\b",                         "sit",            "sit"),
+    (r"\bsits\b",                        "sits",           "sits"),
+    (r"\bsituat\b",                      "situat",         "situate"),
+    (r"\bsituatd\b",                     "situatd",        "situated"),
+    (r"\bsituates\b",                    "situates",       "situates"),
+    (r"\bsize\b",                        "size",           "size"),
+    (r"\bsizes\b",                       "sizes",          "sizes"),
+    (r"\bslow\b",                        "slow",           "slow"),
+    (r"\bslows\b",                       "slows",          "slows"),
+    (r"\bsmall\b",                       "small",          "small"),
+    (r"\bsmalls\b",                      "smalls",         "smalls"),
+    (r"\bsocial\b",                      "social",         "social"),
+    (r"\bsocials\b",                     "socials",        "socials"),
+    (r"\bsolv\b",                        "solv",           "solve"),
+    (r"\bsolvd\b",                       "solvd",          "solved"),
+    (r"\bsolves\b",                      "solves",         "solves"),
+    (r"\bsort\b",                        "sort",           "sort"),
+    (r"\bsorts\b",                       "sorts",          "sorts"),
+    (r"\bsourc\b",                       "sourc",          "source"),
+    (r"\bsources\b",                     "sources",        "sources"),
+    (r"\bspecial\b",                     "special",        "special"),
+    (r"\bspecials\b",                    "specials",       "specials"),
+    (r"\bspecif\b",                      "specif",         "specify"),
+    (r"\bspecifd\b",                     "specifd",        "specified"),
+    (r"\bspecifies\b",                   "specifies",      "specifies"),
+    (r"\bspend\b",                       "spend",          "spend"),
+    (r"\bspends\b",                      "spends",         "spends"),
+    (r"\bspok\b",                        "spok",           "spoke"),
+    (r"\bspokes\b",                      "spokes",         "spokes"),
+    (r"\bspread\b",                      "spread",         "spread"),
+    (r"\bspreads\b",                     "spreads",        "spreads"),
+    (r"\bstandard\b",                    "standard",       "standard"),
+    (r"\bstandards\b",                   "standards",      "standards"),
+    (r"\bstart\b",                       "start",          "start"),
+    (r"\bstarts\b",                      "starts",         "starts"),
+    (r"\bstate\b",                       "state",          "state"),
+    (r"\bstates\b",                      "states",         "states"),
+    (r"\bstat\b",                        "stat",           "status"),
+    (r"\bstatuses\b",                    "statuses",       "statuses"),
+    (r"\bstay\b",                        "stay",           "stay"),
+    (r"\bstays\b",                       "stays",          "stays"),
+    (r"\bstep\b",                        "step",           "step"),
+    (r"\bsteps\b",                       "steps",          "steps"),
+    (r"\bstimul\b",                      "stimul",         "stimulate"),
+    (r"\bstimulatd\b",                   "stimulatd",      "stimulated"),
+    (r"\bstimulates\b",                  "stimulates",     "stimulates"),
+    (r"\bstop\b",                        "stop",           "stop"),
+    (r"\bstops\b",                       "stops",          "stops"),
+    (r"\bstore\b",                       "store",          "store"),
+    (r"\bstores\b",                      "stores",         "stores"),
+    (r"\bstrateg\b",                     "strateg",        "strategy"),
+    (r"\bstrategies\b",                  "strategies",     "strategies"),
+    (r"\bstrength\b",                    "strength",       "strength"),
+    (r"\bstrengths\b",                   "strengths",       "strengths"),
+    (r"\bstress\b",                      "stress",         "stress"),
+    (r"\bstresses\b",                    "stresses",       "stresses"),
+    (r"\bstructur\b",                    "structur",       "structure"),
+    (r"\bstructures\b",                  "structures",     "structures"),
+    (r"\bstruggl\b",                     "struggl",        "struggle"),
+    (r"\bstruggld\b",                    "struggld",       "struggled"),
+    (r"\bstruggles\b",                   "struggles",      "struggles"),
+    (r"\bstudi\b",                       "studi",          "study"),
+    (r"\bstudid\b",                      "studid",         "studied"),
+    (r"\bstudies\b",                     "studies",        "studies"),
+    (r"\bstuff\b",                       "stuff",          "stuff"),
+    (r"\bstuffs\b",                      "stuffs",         "stuffs"),
+    (r"\bsubmit\b",                      "submit",         "submit"),
+    (r"\bsubmits\b",                     "submits",        "submits"),
+    (r"\bsucceed\b",                     "succeed",        "succeed"),
+    (r"\bsucceeds\b",                    "succeeds",       "succeeds"),
+    (r"\bsuffer\b",                      "suffer",         "suffer"),
+    (r"\bsuffers\b",                     "suffers",        "suffers"),
+    (r"\bsuggest\b",                     "suggest",        "suggest"),
+    (r"\bsuggests\b",                    "suggests",       "suggests"),
+    (r"\bsuit\b",                        "suit",           "suit"),
+    (r"\bsuits\b",                       "suits",          "suits"),
+    (r"\bsummar\b",                      "summar",         "summarize"),
+    (r"\bsummarizd\b",                   "summarizd",      "summarized"),
+    (r"\bsummarizes\b",                  "summarizes",     "summarizes"),
+    (r"\bsupervis\b",                    "supervis",       "supervise"),
+    (r"\bsupervisd\b",                   "supervisd",      "supervised"),
+    (r"\bsupervises\b",                  "supervises",     "supervises"),
+    (r"\bsuppli\b",                      "suppli",         "supply"),
+    (r"\bsupplid\b",                     "supplid",        "supplied"),
+    (r"\bsupplies\b",                    "supplies",       "supplies"),
+    (r"\bsupport\b",                     "support",        "support"),
+    (r"\bsupports\b",                    "supports",       "supports"),
+    (r"\bsurfac\b",                      "surfac",         "surface"),
+    (r"\bsurfaces\b",                    "surfaces",       "surfaces"),
+    (r"\bsurpass\b",                     "surpass",        "surpass"),
+    (r"\bsurpasses\b",                   "surpasses",      "surpasses"),
+    (r"\bsurvey\b",                      "survey",         "survey"),
+    (r"\bsurveys\b",                     "surveys",        "surveys"),
+    (r"\bsustain\b",                     "sustain",        "sustain"),
+    (r"\bsustains\b",                    "sustains",       "sustains"),
+    (r"\bswitch\b",                      "switch",         "switch"),
+    (r"\bswitches\b",                    "switches",       "switches"),
+    (r"\bsymbol\b",                      "symbol",         "symbol"),
+    (r"\bsymbols\b",                     "symbols",        "symbols"),
+    (r"\bsystem\b",                      "system",         "system"),
+    (r"\bsystems\b",                     "systems",        "systems"),
+    (r"\btabl\b",                        "tabl",           "table"),
+    (r"\btables\b",                      "tables",         "tables"),
+    (r"\btak\b",                         "tak",            "take"),
+    (r"\btakes\b",                       "takes",          "takes"),
+    (r"\btalk\b",                        "talk",           "talk"),
+    (r"\btalks\b",                       "talks",          "talks"),
+    (r"\btarg\b",                        "targ",           "target"),
+    (r"\btargets\b",                     "targets",        "targets"),
+    (r"\btask\b",                        "task",           "task"),
+    (r"\btasks\b",                       "tasks",          "tasks"),
+    (r"\bteach\b",                       "teach",          "teach"),
+    (r"\bteaches\b",                     "teaches",        "teaches"),
+    (r"\bteam\b",                        "team",           "team"),
+    (r"\bteams\b",                       "teams",          "teams"),
+    (r"\btechnic\b",                     "technic",        "technical"),
+    (r"\btechnicals\b",                  "technicals",     "technicals"),
+    (r"\btechnolog\b",                   "technolog",      "technology"),
+    (r"\btechnologies\b",                "technologies",   "technologies"),
+    (r"\btell\b",                        "tell",           "tell"),
+    (r"\btells\b",                       "tells",          "tells"),
+    (r"\bterm\b",                        "term",           "term"),
+    (r"\bterms\b",                       "terms",          "terms"),
+    (r"\btest\b",                        "test",           "test"),
+    (r"\btests\b",                       "tests",          "tests"),
+    (r"\btext\b",                        "text",           "text"),
+    (r"\btexts\b",                       "texts",          "texts"),
+    (r"\bthank\b",                       "thank",          "thank"),
+    (r"\bthanks\b",                      "thanks",         "thanks"),
+    (r"\btheor\b",                       "theor",          "theory"),
+    (r"\btheories\b",                    "theories",       "theories"),
+    (r"\bthink\b",                       "think",          "think"),
+    (r"\bthinks\b",                      "thinks",          "thinks"),
+    (r"\bthreat\b",                      "threat",         "threat"),
+    (r"\bthreats\b",                     "threats",        "threats"),
+    (r"\bthrough\b",                     "through",        "through"),
+    (r"\bthroughs\b",                    "throughs",       "throughs"),
+    (r"\btime\b",                        "time",           "time"),
+    (r"\btimes\b",                       "times",          "times"),
+    (r"\btitl\b",                        "titl",           "title"),
+    (r"\btitles\b",                      "titles",         "titles"),
+    (r"\btool\b",                        "tool",           "tool"),
+    (r"\btools\b",                       "tools",          "tools"),
+    (r"\btotal\b",                       "total",          "total"),
+    (r"\btotals\b",                      "totals",         "totals"),
+    (r"\btrack\b",                       "track",          "track"),
+    (r"\btracks\b",                      "tracks",         "tracks"),
+    (r"\btrad\b",                        "trad",           "trade"),
+    (r"\btrades\b",                      "trades",         "trades"),
+    (r"\btrain\b",                       "train",          "train"),
+    (r"\btrains\b",                      "trains",          "trains"),
+    (r"\btransact\b",                    "transact",       "transact"),
+    (r"\btransacts\b",                   "transacts",      "transacts"),
+    (r"\btransfer\b",                    "transfer",       "transfer"),
+    (r"\btransfers\b",                   "transfers",      "transfers"),
+    (r"\btransform\b",                   "transform",      "transform"),
+    (r"\btransforms\b",                  "transforms",     "transforms"),
+    (r"\btransit\b",                     "transit",        "transit"),
+    (r"\btransits\b",                    "transits",       "transits"),
+    (r"\btranslat\b",                    "translat",       "translate"),
+    (r"\btranslatd\b",                   "translatd",      "translated"),
+    (r"\btranslates\b",                  "translates",     "translates"),
+    (r"\btransmit\b",                    "transmit",       "transmit"),
+    (r"\btransmits\b",                   "transmits",      "transmits"),
+    (r"\btransport\b",                   "transport",      "transport"),
+    (r"\btransports\b",                  "transports",     "transports"),
+    (r"\btreat\b",                       "treat",          "treat"),
+    (r"\btreats\b",                      "treats",         "treats"),
+    (r"\btrend\b",                       "trend",          "trend"),
+    (r"\btrends\b",                      "trends",         "trends"),
+    (r"\btri\b",                         "tri",            "try"),
+    (r"\btries\b",                       "tries",          "tries"),
+    (r"\btrigger\b",                     "trigger",        "trigger"),
+    (r"\btriggers\b",                    "triggers",       "triggers"),
+    (r"\bturn\b",                        "turn",           "turn"),
+    (r"\bturns\b",                       "turns",          "turns"),
+    (r"\btype\b",                        "type",           "type"),
+    (r"\btypes\b",                       "types",          "types"),
+    (r"\bunderstand\b",                  "understand",     "understand"),
+    (r"\bunderstands\b",                 "understands",    "understands"),
+    (r"\bunit\b",                        "unit",           "unit"),
+    (r"\bunits\b",                       "units",          "units"),
+    (r"\bunivers\b",                     "univers",        "universal"),
+    (r"\buniversals\b",                  "universals",     "universals"),
+    (r"\bupdat\b",                       "updat",          "update"),
+    (r"\bupdatd\b",                      "updatd",         "updated"),
+    (r"\bupdates\b",                     "updates",        "updates"),
+    (r"\bus\b",                          "us",             "use"),
+    (r"\buses\b",                        "uses",           "uses"),
+    (r"\butil\b",                        "util",           "utility"),
+    (r"\butilities\b",                   "utilities",      "utilities"),
+    (r"\bvalid\b",                       "valid",          "valid"),
+    (r"\bvalids\b",                      "valids",         "valids"),
+    (r"\bvalu\b",                        "valu",           "value"),
+    (r"\bvalues\b",                      "values",         "values"),
+    (r"\bvariat\b",                      "variat",         "vary"),
+    (r"\bvaryd\b",                       "varyd",          "varied"),
+    (r"\bvaries\b",                      "varies",         "varies"),
+    (r"\bvari\b",                        "vari",           "vary"),
+    (r"\bvaryd\b",                       "varyd",          "varied"),
+    (r"\bvaries\b",                      "varies",         "varies"),
+    (r"\bvehicl\b",                      "vehicl",         "vehicle"),
+    (r"\bvehicles\b",                    "vehicles",       "vehicles"),
+    (r"\bversion\b",                     "version",        "version"),
+    (r"\bversions\b",                    "versions",       "versions"),
+    (r"\bview\b",                        "view",           "view"),
+    (r"\bviews\b",                       "views",          "views"),
+    (r"\bvisit\b",                       "visit",          "visit"),
+    (r"\bvisits\b",                      "visits",         "visits"),
+    (r"\bvisual\b",                      "visual",         "visual"),
+    (r"\bvisuals\b",                     "visuals",        "visuals"),
+    (r"\bvolum\b",                       "volum",          "volume"),
+    (r"\bvolumes\b",                     "volumes",        "volumes"),
+    (r"\bwait\b",                        "wait",           "wait"),
+    (r"\bwaits\b",                       "waits",          "waits"),
+    (r"\bwant\b",                        "want",           "want"),
+    (r"\bwants\b",                       "wants",          "wants"),
+    (r"\bwarn\b",                        "warn",           "warn"),
+    (r"\bwarns\b",                       "warns",          "warns"),
+    (r"\bwarrant\b",                     "warrant",        "warrant"),
+    (r"\bwarrants\b",                    "warrants",       "warrants"),
+    (r"\bwatch\b",                       "watch",          "watch"),
+    (r"\bwatches\b",                     "watches",        "watches"),
+    (r"\bway\b",                         "way",            "way"),
+    (r"\bways\b",                        "ways",           "ways"),
+    (r"\bweak\b",                        "weak",           "weak"),
+    (r"\bweaks\b",                       "weaks",          "weaks"),
+    (r"\bwear\b",                        "wear",           "wear"),
+    (r"\bwears\b",                       "wears",          "wears"),
+    (r"\bweek\b",                        "week",           "week"),
+    (r"\bweeks\b",                       "weeks",          "weeks"),
+    (r"\bweight\b",                      "weight",         "weight"),
+    (r"\bweights\b",                     "weights",        "weights"),
+    (r"\bwell\b",                        "well",           "well"),
+    (r"\bwells\b",                       "wells",          "wells"),
+    (r"\bwill\b",                        "will",           "will"),
+    (r"\bwills\b",                       "wills",          "wills"),
+    (r"\bwin\b",                         "win",            "win"),
+    (r"\bwins\b",                        "wins",           "wins"),
+    (r"\bwithdraw\b",                    "withdraw",       "withdraw"),
+    (r"\bwithdraws\b",                   "withdraws",      "withdraws"),
+    (r"\bwithhold\b",                    "withhold",       "withhold"),
+    (r"\bwithholds\b",                   "withholds",       "withholds"),
+    (r"\bwithin\b",                      "within",         "within"),
+    (r"\bwithins\b",                     "withins",        "withins"),
+    (r"\bwithout\b",                     "without",        "without"),
+    (r"\bwithouts\b",                    "withouts",       "withouts"),
+    (r"\bword\b",                        "word",           "word"),
+    (r"\bwords\b",                       "words",          "words"),
+    (r"\bwork\b",                        "work",           "work"),
+    (r"\bworks\b",                       "works",          "works"),
+    (r"\bworld\b",                       "world",          "world"),
+    (r"\bworlds\b",                      "worlds",          "worlds"),
+    (r"\bworth\b",                       "worth",          "worth"),
+    (r"\bworths\b",                      "worths",         "worths"),
+    (r"\bwould\b",                       "would",          "would"),
+    (r"\bwoulds\b",                      "woulds",         "woulds"),
+    (r"\bwrite\b",                       "write",          "write"),
+    (r"\bwrites\b",                      "writes",         "writes"),
+    (r"\byear\b",                        "year",           "year"),
+    (r"\byears\b",                       "years",          "years"),
+    (r"\byield\b",                       "yield",          "yield"),
+    (r"\byields\b",                      "yields",         "yields"),
+    (r"\bzero\b",                        "zero",           "zero"),
+    (r"\bzeros\b",                       "zeros",          "zeros"),
+    (r"\bzone\b",                        "zone",           "zone"),
+    (r"\bzones\b",                       "zones",          "zones"),
+    # --- 마스터 데이터 분석 추가 패턴 (2026-03) ---
+    # 오탈자: l/t/f 누락/전치 (마스터 데이터 직접 발견)
+    (r"\bliabilties\b",              "liabilties",    "liabilities"),      # t 누락, liabilites와 별개
+    (r"\bacqusition\b",              "acqusition",    "acquisition"),      # i 누락
+    (r"\binterst\b",                 "interst",       "interest"),         # e 누락
+    (r"\bgurantee\b",                "gurantee",      "guarantee"),
+    (r"\bgurantees\b",               "gurantees",     "guarantees"),
+    (r"\bmeasurment\b",              "measurment",    "measurement"),
+    (r"\bpreiod\b",                  "preiod",        "period"),
+    (r"\bprovison\b",                "provison",      "provision"),
+    (r"\bprovisons\b",               "provisons",     "provisions"),
+    (r"\bdefered\b",                 "defered",       "deferred"),
+    (r"\brecieved\b",                "recieved",      "received"),
+    (r"\brrofit\b",                  "rrofit",        "profit"),           # 앞 r 중복
+    (r"\bpropert\b",                 "propert",       "property"),         # 끝 y 누락
+    (r"\bteminal\b",                 "teminal",       "terminal"),
+    (r"\bdisacounts\b",              "disacounts",    "discounts"),
+    (r"\brealated\b",                "realated",      "related"),
+    (r"\bofrevenue\b",               "ofrevenue",     "of revenue"),       # 공백 누락
+    (r"\bborrowingsl\b",             "borrowingsl",   "borrowings"),       # 끝에 l 오붙음
+    (r"\boutlows?\b",                "outlow(s)",     "outflow(s)"),       # f 누락 (6건)
+    (r"(?<!\w)ncome\b",              "ncome",         "Income"),           # 문장 첫 I 누락 (3건)
+    (r"\biDescription\b",           "iDescription",  "Description"),      # 앞 i 오붙음
+    # 오탈자: 예방적 추가 (재무 영문명 흔한 오탈자)
+    (r"\bforiegn\b",                 "foriegn",       "foreign"),
+    (r"\boccured\b",                 "occured",       "occurred"),
+    (r"\btransfered\b",              "transfered",    "transferred"),
+    (r"\bseperate\b",                "seperate",      "separate"),
+    (r"\bseperately\b",              "seperately",    "separately"),
+    (r"\breconcilation\b",           "reconcilation", "reconciliation"),
+    (r"\bclasification\b",           "clasification", "classification"),
+    (r"\bstatment\b",                "statment",      "statement"),
+    (r"\bsettlment\b",               "settlment",     "settlement"),
+    (r"\bcontibution\b",             "contibution",   "contribution"),
+    (r"\bcontibutions\b",            "contibutions",  "contributions"),
+    (r"\bvalution\b",                "valution",      "valuation"),
+    (r"\bvaulation\b",               "vaulation",     "valuation"),
+    (r"\bassest\b",                  "assest",        "assets"),
+    (r"\bpayement\b",                "payement",      "payment"),
+    (r"\bpaymnet\b",                 "paymnet",       "payment"),
+    # 구조 오류
+    (r"\b\w+\?\w",                   "word?word",     "word-word (하이픈→? 변환 오류)"),   # 365건
+    (r",,",                          ",,",            ", (이중 쉼표)"),                     # 7건
+    (r"\(\s*\)",                     "()",            "빈 괄호 — 내용 채우거나 제거"),       # 3건
     # --- 이중 공백은 별도 체크 ---
 ]
 
@@ -205,8 +1594,17 @@ def _detect_typos_in(text: str, field: str = "en") -> list[Issue]:
             error_type  = "단순 오탈자",
             description = "이중 공백 포함 — 단일 공백으로 수정 필요",
         ))
+    # ── 마침표 ──────────────────────────────────────────────────
+    _SAFE_DOT_ENDS = re.compile(
+        r'(etc\.|Co\.|Ltd\.|Inc\.|Corp\.|S\.A\.|e\.g\.|i\.e\.|vs\.|No\.|Fig\.)$',
+        re.IGNORECASE,
+    )
     text_s = text.strip()
-    if text_s.endswith(".") and not text_s.endswith("..."):
+    if (
+        text_s.endswith(".")
+        and not text_s.endswith("...")
+        and not _SAFE_DOT_ENDS.search(text_s)
+    ):
         kw = {"highlight_" + field: ["."]}
         issues.append(Issue(
             error_type  = "단순 오탈자",
@@ -373,18 +1771,6 @@ def detect_issues(
                 "(가이드 §3.Ⅱ.2.(4))"
             )
 
-        # (B-8) 총액/순액 접미사 누락
-        if re.search(r"총액", ko) and not re.search(r"Gross", en_s, re.IGNORECASE):
-            violations.append(
-                '한글명에 "총액" 포함 — XBRL 이름(Name)에 "Gross" 접미사 추가 필요 '
-                "(가이드 §3.Ⅱ.2.(4))"
-            )
-        if re.search(r"순액", ko) and not re.search(r"Net", en_s, re.IGNORECASE):
-            violations.append(
-                '한글명에 "순액" 포함 — XBRL 이름(Name)에 "Net" 접미사 추가 필요 '
-                "(가이드 §3.Ⅱ.2.(4))"
-            )
-
         # (B-9) 현금흐름 조정 접두사 누락
         if re.search(r"현금흐름.*조정|조정.*현금흐름", ko) and not re.search(
             r"AdjustmentsFor", en_s
@@ -522,7 +1908,6 @@ def _apply_full_border(ws, nrows: int, ncols: int) -> None:
 
 # ─────────────────────────────────────────────────────────────
 # Report generation
-# ─────────────────────────────────────────────────────────────
 HEADERS    = [
     "Index", "Report",
     "기본 한글명", "기본 영문명",
@@ -530,6 +1915,99 @@ HEADERS    = [
     "ErrorType", "ErrorDescription",
 ]
 COL_WIDTHS = [7, 28, 32, 55, 18, 30, 55, 22, 70]
+
+# 마스터 파일용 헤더
+MASTER_HEADERS = [
+    "Index", "Title",
+    "한글명", "영문명",
+    "오류유형", "오류내용",
+]
+MASTER_COL_WIDTHS = [7, 28, 32, 55, 22, 70]
+
+
+def generate_master_report(
+    results: list[RowResult],
+    out_path,  # Path | io.BytesIO
+    total_rows: int,
+) -> None:
+    """
+    마스터 파일 검사 결과를 Excel 파일로 출력한다.
+    마스터 파일은 표현 필드가 없고 간단한 구조를 가진다.
+    """
+    wb = Workbook()
+    ws = wb.active
+    ws.title = "마스터검사결과"
+
+    COLS = {h: i + 1 for i, h in enumerate(MASTER_HEADERS)}
+    N = len(MASTER_HEADERS)
+
+    # ── 공통 스타일 ────────────────────────────────────────────
+    hdr_font = Font(name=FONT_NAME, bold=True, size=FONT_SIZE, color=HEADER_FG)
+    hdr_fill = PatternFill("solid", start_color=HEADER_BG)
+    norm_font = Font(name=FONT_NAME, size=FONT_SIZE)
+    err_font = Font(name=FONT_NAME, bold=True, size=FONT_SIZE, color="CC0000")
+    desc_font = Font(name=FONT_NAME, italic=True, size=FONT_SIZE, color="333333")
+    yell_fill = PatternFill("solid", start_color=VB_YELLOW)
+    TOP = Alignment(horizontal="left", vertical="top", wrap_text=True)
+
+    # ── 헤더 행 ────────────────────────────────────────────────
+    for ci, (h, w) in enumerate(zip(MASTER_HEADERS, MASTER_COL_WIDTHS), 1):
+        cell = ws.cell(1, ci, h)
+        cell.font = hdr_font
+        cell.fill = hdr_fill
+        cell.alignment = TOP
+        ws.column_dimensions[get_column_letter(ci)].width = w
+    ws.row_dimensions[1].height = 22
+
+    # ── 데이터 없음 ────────────────────────────────────────────
+    if not results:
+        c = ws.cell(2, 1, "이상 없음")
+        c.font = Font(name=FONT_NAME, bold=True, size=10, color="008000")
+        c.alignment = Alignment(horizontal="left", vertical="top")
+        ws.merge_cells("A2:F2")
+        _apply_full_border(ws, 2, N)
+        ws.freeze_panes = "A2"
+        wb.save(out_path)
+        return
+
+    # ── RowResult → 플랫 행 목록 ───────────────────────────────
+    flat: list[dict] = []
+    row_idx = 1  # Excel 행 번호 (헤더가 1행이므로 데이터는 2행부터)
+
+    for rr in results:
+        if not rr.issues:
+            continue  # 마스터 파일은 오류가 있는 행만 출력
+
+        for issue in rr.issues:
+            row_idx += 1
+            flat.append({
+                "Index": row_idx - 1,  # 1부터 시작하는 인덱스
+                "Title": rr.title,
+                "한글명": rr.ko,
+                "영문명": rr.en,
+                "오류유형": issue.error_type,
+                "오류내용": issue.description,
+            })
+
+    # ── 데이터 행 ───────────────────────────────────────────────
+    for ri, row_data in enumerate(flat, 2):  # 2행부터 시작
+        # 기본 값들
+        ws.cell(ri, COLS["Index"], row_data["Index"])
+        ws.cell(ri, COLS["Title"], row_data["Title"])
+        ws.cell(ri, COLS["한글명"], row_data["한글명"])
+        ws.cell(ri, COLS["영문명"], row_data["영문명"])
+        ws.cell(ri, COLS["오류유형"], row_data["오류유형"])
+        ws.cell(ri, COLS["오류내용"], row_data["오류내용"])
+
+        # 스타일 적용
+        for ci in range(1, N + 1):
+            cell = ws.cell(ri, ci)
+            cell.font = norm_font
+            cell.alignment = TOP
+            _apply_full_border(ws, ri, N)
+
+    ws.freeze_panes = "A2"
+    wb.save(out_path)
 
 
 def generate_report(
@@ -762,16 +2240,78 @@ def _has_extra_columns(df: pd.DataFrame) -> bool:
     return all(c in df.columns for c in ["labelTitle", "ko", "en"])
 
 
-def run_check(
-    path:        Path,
+def run_check_bytes(
+    file_bytes:  bytes,
+    filename:    str,
     company:     str,
     btype:       str,
-    output_dir:  Path,
     pwc_encoded: bool = False,
-    ai_review:   bool = False,
-    ai_engine:   str  = "claude",
-    api_key:     str  = "",
-) -> Path:
+) -> tuple[bytes, dict]:
+    """
+    바이트 데이터로부터 XBRL 검사를 수행하고 Excel 보고서를 생성합니다.
+    
+    Args:
+        file_bytes: Excel 파일의 바이트 데이터
+        filename: 파일명
+        company: 회사명
+        btype: 재무제표 구분 ("별도" 또는 "연결")
+        pwc_encoded: PwC 인코딩 적용 여부
+    
+    Returns:
+        tuple: (Excel 바이트 데이터, 통계 정보)
+    """
+    # 임시 파일로 저장
+    tmp_path = Path("temp_check.xlsx")
+    try:
+        with open(tmp_path, "wb") as f:
+            f.write(file_bytes)
+        
+        # DataFrame 읽기
+        df = _read_dataframe(tmp_path, pwc_encoded=pwc_encoded)
+        has_extra = _has_extra_columns(df)
+        
+        # ── 1단계: 규칙 기반 검사 ────────────────────────────────
+        result_map = {}
+        results = []
+        issue_cache = {}
+        
+        for idx, row in df.iterrows():
+            title = str(row.get("labelTitle", "") or "").strip() if has_extra else "기본"
+            ko = str(row.get("ko_label", "") or "").strip()
+            en = str(row.get("en_label", "") or "").strip()
+            ko2 = str(row.get("ko", "") or "").strip() if has_extra else ""
+            en2 = str(row.get("en", "") or "").strip() if has_extra else ""
+            pfx = str(row.get("prefix", "") or "").strip()
+            
+            cache_key = (en, ko, en2, ko2, pfx, title)
+            if cache_key in issue_cache:
+                issues = issue_cache[cache_key]
+            else:
+                issues = detect_issues(en, ko, en2, ko2, prefix=pfx, label_title=title)
+                issue_cache[cache_key] = issues
+            
+            rr = RowResult(title=title, ko=ko, en=en, lt=title, ko2=ko2, en2=en2, issues=issues)
+            if issues:  # 문제 있는 행만 결과에 포함
+                results.append(rr)
+            result_map[idx] = rr
+        
+        # ── 2단계: Excel 보고서 생성 ──────────────────────────────
+        buf = io.BytesIO()
+        generate_report(results, buf, company=company, btype=btype, total_rows=len(df))
+        buf.seek(0)
+        excel_bytes = buf.read()
+        
+        stats = {
+            "total_rows": len(df),
+            "issue_count": len(results),
+            "n_missing": sum(1 for rr in results for i in rr.issues if i.error_type == "영문명 미기재"),
+            "n_violation": sum(1 for rr in results for i in rr.issues if i.error_type == "XBRL 확장 원칙 위배"),
+            "n_typo": sum(1 for rr in results for i in rr.issues if i.error_type == "단순 오탈자"),
+        }
+        return excel_bytes, stats
+    
+    finally:
+        tmp_path.unlink(missing_ok=True)
     """
     Main entry point: run checks on a single file and write the Excel report.
     Returns the output path.
@@ -967,15 +2507,13 @@ if __name__ == "__main__":
     main()
 
 
-def run_check_bytes(
-    file_bytes:  bytes,
-    filename:    str,
-    company:     str,
-    btype:       str,
-    pwc_encoded: bool = False,
+def run_master_check_bytes(
+    file_bytes: bytes,
+    filename: str,
 ) -> tuple:
     """
-    Streamlit 용: 파일 바이트를 받아 검사 결과 Excel 바이트를 반환한다.
+    마스터 파일용: 모든 행을 검사하여 결과 Excel 바이트를 반환한다.
+    마스터 파일은 prefix 컬럼이 없고 모든 행을 검사한다.
     Returns (excel_bytes, stats_dict)
     """
     import io
@@ -987,40 +2525,152 @@ def run_check_bytes(
         tmp_path = Path(tmp.name)
 
     try:
-        df        = _read_dataframe(tmp_path, pwc_encoded=pwc_encoded)
-        has_extra = _has_extra_columns(df)
-
-        results:    list[RowResult] = []
+        # 마스터 파일은 PwC 인코딩 적용
+        df = _read_dataframe(tmp_path, pwc_encoded=True)
+        
+        results: list[RowResult] = []
         result_map: dict[int, RowResult] = {}
-
+        
+        # 캐시를 사용하여 중복 검사 방지
+        issue_cache: dict[str, list[Issue]] = {}
+        
         for idx, row in df.iterrows():
-            en    = str(row.get("en_label",  "") or "").strip()
-            ko    = str(row.get("ko_label",  "") or "").strip()
-            en2   = str(row.get("en",        "") or "").strip() if has_extra else ""
-            ko2   = str(row.get("ko",        "") or "").strip() if has_extra else ""
-            lt    = str(row.get("labelTitle","") or "").strip() if has_extra else ""
-            title = str(row.get("Title",     "") or "").strip()
-            pfx   = str(row.get("prefix",    "") or "").strip()
-
-            issues = detect_issues(en, ko, en2, ko2, prefix=pfx, label_title=lt)
+            en = str(row.get("en_label", "") or "").strip()
+            ko = str(row.get("ko_label", "") or "").strip()
+            
+            # 마스터 파일은 표현 필드 없음
+            en2 = ""
+            ko2 = ""
+            lt = ""
+            title = str(row.get("Title", "") or "").strip()
+            pfx = ""  # 마스터 파일은 prefix 없음
+            
+            # 캐시 키 생성 (en_label + ko_label 조합)
+            cache_key = f"{en}|{ko}"
+            
+            if cache_key in issue_cache:
+                issues = issue_cache[cache_key]
+            else:
+                issues = detect_issues(en, ko, en2, ko2, prefix=pfx, label_title=lt)
+                issue_cache[cache_key] = issues
+            
             rr = RowResult(title=title, ko=ko, en=en, lt=lt, ko2=ko2, en2=en2, issues=issues)
-            if issues:
+            if issues:  # 마스터 파일은 모든 행을 결과에 포함 (문제 있는 행만 필터링하지 않음)
                 results.append(rr)
             result_map[idx] = rr
 
         buf = io.BytesIO()
-        generate_report(results, buf, company, btype, total_rows=len(df))
+        generate_master_report(results, buf, total_rows=len(df))
         buf.seek(0)
         excel_bytes = buf.read()
 
         stats = {
-            "total_rows":  len(df),
+            "total_rows": len(df),
             "issue_count": len(results),
-            "n_missing":   sum(1 for rr in results for i in rr.issues if i.error_type == "영문명 미기재"),
+            "n_missing": sum(1 for rr in results for i in rr.issues if i.error_type == "영문명 미기재"),
             "n_violation": sum(1 for rr in results for i in rr.issues if i.error_type == "XBRL 확장 원칙 위배"),
-            "n_typo":      sum(1 for rr in results for i in rr.issues if i.error_type == "단순 오탈자"),
+            "n_typo": sum(1 for rr in results for i in rr.issues if i.error_type == "단순 오탈자"),
         }
         return excel_bytes, stats
 
+    finally:
+        tmp_path.unlink(missing_ok=True)
+
+
+def run_ai_review(excel_bytes: bytes, api_key: str, company: str, btype: str) -> tuple[bytes, dict]:
+    """
+    AI 2차 검토를 수행합니다.
+    
+    Args:
+        excel_bytes: 검토할 Excel 파일의 바이트 데이터
+        api_key: Claude API 키
+        company: 회사명
+        btype: 재무제표 구분 ("별도" 또는 "연결")
+    
+    Returns:
+        tuple: (AI 검토 결과 Excel 바이트, 통계 정보)
+    """
+    if not _AI_AVAILABLE:
+        raise ImportError("AI 리뷰어 모듈이 설치되지 않았습니다.")
+    
+    # 임시 파일로 저장
+    tmp_path = Path("temp_ai_review.xlsx")
+    try:
+        with open(tmp_path, "wb") as f:
+            f.write(excel_bytes)
+        
+        # Excel 파일에서 데이터 읽기
+        xl = pd.ExcelFile(tmp_path, engine="openpyxl")
+        sheet_candidates = ["XBRLMPMaster", "연결", "별도", "Sheet1", "Data", "재무제표"]
+        sheet_name = next((s for s in sheet_candidates if s in xl.sheet_names), xl.sheet_names[0])
+        df = pd.read_excel(tmp_path, sheet_name=sheet_name, engine="openpyxl")
+        
+        # PwC 디코딩 적용 (필요시)
+        for col in ["ko_label", "en_label", "ko", "en"]:
+            if col in df.columns:
+                df[col] = df[col].fillna("").astype(str).str.strip()
+        
+        # Entity rows 준비 및 AI 검토
+        entity_rows = prepare_entity_rows(df)
+        ai_issues = review_labels(entity_rows, engine="claude", api_key=api_key, verbose=False)
+        
+        # 기존 워크북 로드
+        from openpyxl import load_workbook
+        wb = load_workbook(tmp_path)
+        
+        # AI 검토 시트 추가 또는 업데이트
+        if "AI_Review" in wb.sheetnames:
+            ws = wb["AI_Review"]
+            ws.delete_rows(1, ws.max_row)
+        else:
+            ws = wb.create_sheet("AI_Review")
+        
+        # 헤더 작성
+        headers = ["행 번호", "한글명", "영문명", "AI 검토 결과", "신뢰도", "설명"]
+        for col, header in enumerate(headers, 1):
+            cell = ws.cell(row=1, column=col, value=header)
+            cell.font = Font(bold=True, name=FONT_NAME, size=FONT_SIZE)
+            cell.fill = PatternFill(start_color=HEADER_BG, end_color=HEADER_BG, fill_type="solid")
+        
+        # AI 이슈 작성
+        for row, issue in enumerate(ai_issues, 2):
+            # 행 번호 찾기 (entity_rows에서 _row_idx 사용)
+            row_number = getattr(issue, 'row_idx', issue.row_idx if hasattr(issue, 'row_idx') else row-1)
+            
+            # 한글명과 영문명 찾기 (entity_rows에서 해당 행 데이터 사용)
+            korean_label = ""
+            english_label = ""
+            for entity_row in entity_rows:
+                if entity_row.get("_row_idx") == row_number:
+                    korean_label = entity_row.get("ko_label", "")
+                    english_label = entity_row.get("en_label", "")
+                    break
+            
+            ws.cell(row=row, column=1, value=row_number + 1)  # 1-based 행 번호
+            ws.cell(row=row, column=2, value=korean_label)
+            ws.cell(row=row, column=3, value=english_label)
+            ws.cell(row=row, column=4, value=issue.error_type)
+            ws.cell(row=row, column=5, value="N/A")  # 신뢰도 정보 없음
+            ws.cell(row=row, column=6, value=issue.description)
+        
+        # 열 너비 자동 조정
+        for col in range(1, len(headers) + 1):
+            ws.column_dimensions[get_column_letter(col)].width = 15
+        
+        # 결과 저장
+        buf = io.BytesIO()
+        wb.save(buf)
+        buf.seek(0)
+        result_bytes = buf.read()
+        
+        stats = {
+            "ai_issues_count": len(ai_issues),
+            "high_confidence": 0,  # 신뢰도 정보 없음
+            "medium_confidence": 0,
+            "low_confidence": 0,
+        }
+        
+        return result_bytes, stats
+    
     finally:
         tmp_path.unlink(missing_ok=True)

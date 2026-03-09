@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+.env
+*.xlsx
+*.xlsm
+*.json
+결과/
+.DS_Store
+Thumbs.db

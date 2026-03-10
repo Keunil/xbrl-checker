@@ -2616,7 +2616,7 @@ def run_ai_review(excel_bytes: bytes, api_key: str, company: str, btype: str) ->
         
         # 기존 워크북 로드
         from openpyxl import load_workbook
-        wb = load_workbook(tmp_path)
+        wb = load_workbook(tmp_path, keep_vba=True, data_only=True)
         
         # AI 검토 시트 추가 또는 업데이트
         if "AI_Review" in wb.sheetnames:

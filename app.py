@@ -10,7 +10,7 @@ from pathlib import Path
 import streamlit as st
 from openpyxl import load_workbook
 
-from checker import run_check_bytes, run_master_check_bytes, run_ai_review
+from checker import run_check_bytes, run_master_check_bytes, run_ai_review, validate_element_names
 
 # ──────────────────────────────────────────────────────────────
 # 페이지 설정
@@ -82,7 +82,7 @@ st.markdown("금감원 DART XBRL 재무제표 작성 가이드 기반 자동 검
 # ──────────────────────────────────────────────────────────────
 # 탭 생성
 # ──────────────────────────────────────────────────────────────
-tab1, tab2 = st.tabs(["📋 일반 검사", "📊 마스터 파일 검사"])
+tab1, tab2, tab3 = st.tabs(["📋 일반 검사", "📊 마스터 파일 검사", "🏷️ 계정명 검증"])
 
 # ──────────────────────────────────────────────────────────────
 # 탭 1: 일반 XBRL 파일 검사
@@ -106,7 +106,7 @@ with tab1:
                    - finance_type: 별도 or 연결 (Sources.B3)
         """
         try:
-            wb = load_workbook(file_bytes)
+            wb = load_workbook(file_bytes, keep_vba=True, data_only=True)
             sheet_names = wb.sheetnames
             
             # 필수 시트 확인
@@ -432,6 +432,91 @@ if master_submitted:
         use_container_width=True,
         type="primary",
     )
+
+# ──────────────────────────────────────────────────────────────
+# 탭 3: 계정명(Element Name) 검증
+# ──────────────────────────────────────────────────────────────
+_LEVEL_ICON = {1: "⛔", 2: "🔴", 3: "⚠️", 4: "ℹ️"}
+_LEVEL_LABEL = {
+    1: "Level 1 — CRITICAL (정정공시 사유)",
+    2: "Level 2 — HIGH (자연어 미처리)",
+    3: "Level 3 — MEDIUM (택소노미 확장 원칙 위배)",
+    4: "Level 4 — LOW / Optional (단순 오탈자)",
+}
+
+with tab3:
+    st.markdown("### 🏷️ XBRL 계정명(Element Name) 오류 검증")
+    st.markdown(
+        "DART 제출용 XBRL 확장 택소노미의 **계정명(element name)**을 입력하면 "
+        "4단계 심각도로 분류하여 오류를 탐지합니다."
+    )
+
+    elem_input = st.text_area(
+        "계정명 입력 (줄바꿈 또는 쉼표로 구분)",
+        height=220,
+        placeholder=(
+            "Assets\nAccountsReceivable\ntrade_payables\n"
+            "INVENTORIES\nitem\nNew Revenue\nReceivabels"
+        ),
+        key="elem_input",
+    )
+
+    col_opt, col_btn = st.columns([3, 1])
+    with col_opt:
+        show_optional = st.checkbox(
+            "Level 4 (단순 오탈자) 표시",
+            value=True,
+            key="show_optional",
+        )
+
+    with col_btn:
+        elem_submitted = st.button(
+            "🔎 검증 실행",
+            use_container_width=True,
+            type="primary",
+            key="elem_submit",
+        )
+
+    if elem_submitted:
+        if not elem_input.strip():
+            st.warning("계정명을 입력해 주세요.")
+        else:
+            results = validate_element_names(elem_input)
+            visible = [e for e in results if not (e.optional and not show_optional)]
+
+            if not visible:
+                st.success("✅ 오류가 탐지되지 않았습니다.")
+            else:
+                st.error(f"총 {sum(len(e.items) for e in visible)}건의 오류가 탐지되었습니다.")
+                st.divider()
+
+                for err in visible:
+                    icon = _LEVEL_ICON.get(err.level, "")
+                    label = _LEVEL_LABEL.get(err.level, f"Level {err.level}")
+                    header = f"{icon} **{label}** — `{err.code}`  ({len(err.items)}건)"
+                    with st.expander(header, expanded=(err.level <= 2)):
+                        st.markdown(f"**{err.title}**")
+                        st.markdown(f"*{err.message}*")
+                        st.code("\n".join(err.items), language=None)
+                        st.markdown(f"**수정 권고:** {err.suggestion}")
+
+    # 사용 안내
+    with st.expander("ℹ️ 탐지 규칙 안내"):
+        st.markdown("""
+| Level | 코드 | 설명 |
+|---|---|---|
+| ⛔ 1 | `PLACEHOLDER` | `item`, `title` 등 의미 없는 플레이스홀더 |
+| ⛔ 1 | `NEW-PREFIX` | `New`로 시작하는 미완성 계정명 |
+| 🔴 2 | `CAMEL-CASE` | PascalCase/camelCase (자연어 미처리) |
+| 🔴 2 | `SNAKE-CASE` | snake_case 형식 (`_Abstract` 등 구조 접미사 제외) |
+| 🔴 2 | `ALL-CAPS` | 전체 대문자 (허용 약어: IFRS, GAAP, EBITDA 등 제외) |
+| ⚠️ 3 | `STD-REDEFINED` | IFRS-full/DART 표준 요소 재정의 |
+| ⚠️ 3 | `GENERIC-EXTENSION` | `Other`, `기타` 등 비특정 포괄 계정명 |
+| ⚠️ 3 | `DIMENSION-MISUSE` | Axis·Member 요소와 동일 기반 Fact 요소 혼재 |
+| ℹ️ 4 | `TYPO` | 오탈자 의심 (difflib 유사도 기반, optional) |
+
+동일 계정명이 여러 Level에 해당할 경우 **상위 Level 우선** 적용됩니다.
+        """)
 
 # ──────────────────────────────────────────────────────────────
 # 푸터

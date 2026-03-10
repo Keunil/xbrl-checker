@@ -152,8 +152,8 @@ with tab1:
 
     uploaded = st.file_uploader(
         "XBRL 파일 업로드",
-        type=["xlsm", "xlsx"],
-        help="스마트XBRL에서 내보낸 .xlsm 또는 .xlsx 파일을 업로드하세요.",
+        type=["xlsm"],
+        help="스마트XBRL에서 내보낸 .xlsm 파일을 업로드하세요.",
     )
 
     # 파일 검증 및 메타데이터 추출
@@ -207,7 +207,7 @@ with tab1:
             
             if ai_review:
                 api_key = st.text_input(
-                    "Claude API Key",
+                    "API Key",
                     type="password",
                     placeholder="sk-ant-api03-...",
                     help="Anthropic Claude API 키를 입력하세요.",

@@ -18,6 +18,7 @@ from __future__ import annotations
 
 import argparse
 import base64
+import io
 import re
 import sys
 from dataclasses import dataclass, field
